@@ -64,17 +64,45 @@ const getCurrencyFlag = (currency: string) => {
 };
 
 export function EconomicEventsTable() {
-  const [events, setEvents] = useState<EconomicEvent[]>(mockEvents);
+  const [events, setEvents] = useState<EconomicEvent[]>([]);
   const [isRefreshing, setIsRefreshing] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [searchTerm, setSearchTerm] = useState("");
 
+  const loadEvents = async (date: Date) => {
+    try {
+      setIsLoading(true);
+      const eventData = await financialApi.getEconomicEvents(date);
+      setEvents(eventData);
+    } catch (error) {
+      console.error("Failed to load events:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   const handleRefresh = async () => {
     setIsRefreshing(true);
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    await loadEvents(selectedDate);
     setIsRefreshing(false);
   };
+
+  const handleDateChange = (newDate: Date) => {
+    setSelectedDate(newDate);
+    loadEvents(newDate);
+  };
+
+  useEffect(() => {
+    loadEvents(selectedDate);
+
+    // Set up auto-refresh every 5 minutes
+    const interval = setInterval(() => {
+      loadEvents(selectedDate);
+    }, 5 * 60 * 1000);
+
+    return () => clearInterval(interval);
+  }, [selectedDate]);
 
   const filteredEvents = events.filter(event => 
     event.event.toLowerCase().includes(searchTerm.toLowerCase()) ||
