@@ -16,10 +16,10 @@ const translations = {
   en: {
     // Navigation
     "nav.title": "Liirat",
-    "nav.subtitle": "Economic Dashboard",
+    "nav.subtitle": "News",
     "nav.footer": "Real-time Financial Intelligence",
-    "nav.poweredBy": "Powered by AI • Built for Traders",
-    
+    "nav.poweredBy": "Powered by AI",
+
     // Dashboard
     "dashboard.title": "Economic Calendar",
     "dashboard.subtitle": "Real-time economic events and market-moving news",
@@ -60,7 +60,7 @@ const translations = {
     // Navigation
     "nav.title": "ليرات",
     "nav.subtitle": "لوحة الاقتصاد",
-    "nav.footer": "ذكاء مالي في الوقت الف��لي",
+    "nav.footer": "ذكاء مالي في الوقت الفعلي",
     "nav.poweredBy": "مدعوم بالذكاء الاصطناعي • مصمم للمتداولين",
     
     // Dashboard
