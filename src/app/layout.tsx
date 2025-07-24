@@ -36,37 +36,38 @@ export default function RootLayout({
         <TooltipProvider>
           <ThemeProvider
             attribute="class"
-            defaultTheme="system"
+            defaultTheme="dark"
             enableSystem
             disableTransitionOnChange
           >
-            <nav className="w-full py-4 border-b mb-4">
+            <nav className="w-full py-6 border-b border-border/50 mb-6 bg-card/50 backdrop-blur-sm">
               <div className="container flex justify-between items-center">
-                <h1 className="text-lg">Shadcn/ui - Big Calendar Styles</h1>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 bg-gradient-to-br from-primary to-primary/80 rounded-md flex items-center justify-center">
+                    <span className="text-black font-bold text-sm">L</span>
+                  </div>
+                  <h1 className="text-xl font-bold text-primary">Liirat</h1>
+                  <span className="text-muted-foreground text-sm">Economic Dashboard</span>
+                </div>
+                <div className="flex items-center gap-3">
                   <GitHubStarButton />
                   <ThemeSelect />
                 </div>
               </div>
             </nav>
             {children}
-            <footer className="w-full py-4 border-t mt-auto">
-              <div className="container flex justify-between">
-                <p>
-                  &copy; {new Date().getFullYear()}{" "}
-                  <Link href="https://jonas-list.vercel.app/" className="hover:underline">Jonas List</Link>
-                </p>
-                <p>
-                  <Link
-                    href="https://jquense.github.io/react-big-calendar/examples/index.html?path=/story/about-big-calendar--page"
-                    className="mr-2 hover:underline"
-                  >
-                    Original Big Calendar
-                  </Link>
-                  |
-                  <Link href="https://ui.shadcn.com/" className="ml-2 hover:underline">
-                    Shadcn/ui
-                  </Link>
+            <footer className="w-full py-6 border-t border-border/50 mt-auto bg-card/50">
+              <div className="container flex justify-between items-center">
+                <div className="flex items-center gap-2">
+                  <div className="w-6 h-6 bg-primary rounded flex items-center justify-center">
+                    <span className="text-black font-bold text-xs">L</span>
+                  </div>
+                  <p className="text-sm text-muted-foreground">
+                    &copy; {new Date().getFullYear()} Liirat Ltd. Real-time Financial Intelligence
+                  </p>
+                </div>
+                <p className="text-xs text-muted-foreground">
+                  Powered by AI • Built for Traders
                 </p>
               </div>
             </footer>
