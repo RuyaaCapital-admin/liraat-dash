@@ -27,6 +27,7 @@ export function LayoutContent({ children }: LayoutContentProps) {
             <span className="text-muted-foreground text-sm">{t("nav.subtitle")}</span>
           </div>
           <div className="flex items-center gap-3">
+            <NotificationButton />
             <LanguageSelector />
             <GitHubStarButton />
             <ThemeSelect />
