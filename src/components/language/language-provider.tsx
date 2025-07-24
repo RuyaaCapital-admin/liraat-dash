@@ -97,7 +97,7 @@ const translations = {
     "ai.assistant": "مساعد الذكاء الاصطناعي",
     "ai.placeholder": "اسأل عن الأسواق والأحداث والاستراتيجيات...",
     "ai.thinking": "الذكاء الاصطناعي يفكر...",
-    "ai.welcome": "مرحباً! أنا مساعدك التجاري بالذكاء الاصطناعي. اسألني عن الأحداث الاقتصادية اليوم، تحليل السوق، أو استراتيجيات التداول.",
+    "ai.welcome": "مرحباً! أنا مساعدك التجاري بالذكاء الاصطناعي. اسألني عن الأحداث الاقتصادية اليوم، تحليل السوق، أو استر��تيجيات التداول.",
   },
 };
 
@@ -119,14 +119,17 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   };
 
   useEffect(() => {
-    const savedLanguage = localStorage.getItem("liirat-language") as Language;
-    if (savedLanguage && (savedLanguage === "en" || savedLanguage === "ar")) {
-      setLanguage(savedLanguage);
-    } else {
-      // Auto-detect browser language
-      const browserLang = navigator.language.split("-")[0];
-      if (browserLang === "ar") {
-        setLanguage("ar");
+    // Only run on client side
+    if (typeof window !== 'undefined') {
+      const savedLanguage = localStorage.getItem("liirat-language") as Language;
+      if (savedLanguage && (savedLanguage === "en" || savedLanguage === "ar")) {
+        setLanguage(savedLanguage);
+      } else {
+        // Auto-detect browser language
+        const browserLang = navigator.language.split("-")[0];
+        if (browserLang === "ar") {
+          setLanguage("ar");
+        }
       }
     }
   }, []);
