@@ -38,14 +38,14 @@ const getImpactColor = (impact: EconomicEvent["impact"]) => {
   }
 };
 
-const getImpactLabel = (impact: EconomicEvent["impact"]) => {
+const getImpactLabel = (impact: EconomicEvent["impact"], t: (key: string) => string) => {
   switch (impact) {
     case "high":
-      return "High";
+      return t("impact.highLabel");
     case "medium":
-      return "Medium";
+      return t("impact.mediumLabel");
     case "low":
-      return "Low";
+      return t("impact.lowLabel");
     default:
       return "Unknown";
   }
