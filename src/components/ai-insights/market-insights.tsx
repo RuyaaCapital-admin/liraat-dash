@@ -4,12 +4,13 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { 
-  Bot, 
-  Brain, 
-  MessageSquare, 
-  Sparkles, 
-  Send, 
+import { useLanguage } from "@/components/language/language-provider";
+import {
+  Bot,
+  Brain,
+  MessageSquare,
+  Sparkles,
+  Send,
   X,
   TrendingUp,
   AlertTriangle,
