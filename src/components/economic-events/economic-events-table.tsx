@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { MarketInsights } from "@/components/ai-insights/market-insights";
 import { useLanguage } from "@/components/language/language-provider";
 import { createDefaultFinancialApi } from "@/lib/financial-api";
-import { AlertTriangle, Bot, Calendar, Clock, Filter, RefreshCw, TrendingUp } from "lucide-react";
+import { AlertTriangle, Bell, Bot, Calendar, Clock, Filter, RefreshCw, TrendingUp } from "lucide-react";
 import { useState, useEffect } from "react";
 import { format } from "date-fns";
 
