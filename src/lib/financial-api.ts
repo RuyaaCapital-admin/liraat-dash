@@ -78,12 +78,18 @@ export class FinancialApiService {
   private async getMarketauxEvents(date: Date): Promise<EconomicEvent[]> {
     const dateStr = date.toISOString().split('T')[0];
     const url = `${this.config.baseUrl}/v1/news/all?published_on=${dateStr}&api_token=${this.config.apiKey}&categories=general,forex&limit=50`;
-    
+
     const response = await fetch(url);
     if (!response.ok) {
-      throw new Error(`Marketaux API error: ${response.status}`);
+      if (response.status === 401) {
+        throw new Error(`Marketaux API authentication failed. Please check your API key.`);
+      } else if (response.status === 429) {
+        throw new Error(`Marketaux API rate limit exceeded. Please try again later.`);
+      } else {
+        throw new Error(`Marketaux API error: ${response.status} - ${response.statusText}`);
+      }
     }
-    
+
     const data = await response.json();
     return this.transformMarketauxData(data.data || []);
   }
