@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { useAlerts } from "@/components/alerts/alerts-provider";
 import { MarketInsights } from "@/components/ai-insights/market-insights";
 import { useLanguage } from "@/components/language/language-provider";
 import { createDefaultFinancialApi } from "@/lib/financial-api";
