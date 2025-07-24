@@ -73,6 +73,7 @@ export function EconomicEventsTable() {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [searchTerm, setSearchTerm] = useState("");
   const [showAiInsights, setShowAiInsights] = useState(false);
+  const [usingFallbackData, setUsingFallbackData] = useState(false);
 
   const loadEvents = async (date: Date) => {
     try {
