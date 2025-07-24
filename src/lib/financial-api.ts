@@ -13,11 +13,11 @@ export class FinancialApiService {
     this.config = config;
   }
 
-  async getEconomicEvents(date: Date): Promise<EconomicEvent[]> {
+  async getEconomicEvents(date: Date, language: string = "en"): Promise<EconomicEvent[]> {
     // Check if we have a valid API key before making requests
     if (!this.config.apiKey || this.config.apiKey === "demo" || this.config.apiKey === "your_api_key_here") {
       console.warn("No valid API key configured, using fallback data");
-      return this.getFallbackEvents(date);
+      return this.getFallbackEvents(date, language);
     }
 
     try {
@@ -33,7 +33,7 @@ export class FinancialApiService {
       }
     } catch (error) {
       console.error("Error fetching economic events:", error);
-      return this.getFallbackEvents(date);
+      return this.getFallbackEvents(date, language);
     }
   }
 
@@ -268,7 +268,7 @@ export class FinancialApiService {
           time: new Date(date.getFullYear(), date.getMonth(), date.getDate(), 9, 30),
           currency: "USD",
           impact: "high" as const,
-          event: "قرار الاح��ياطي الفيدرالي بشأن أسعار الفائدة",
+          event: "قرار الاحتياطي الفيدرالي بشأن أسعار الفائدة",
           actual: "5.25%",
           forecast: "5.25%",
           previous: "5.00%",
