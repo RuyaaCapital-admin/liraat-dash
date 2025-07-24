@@ -241,6 +241,7 @@ export function EconomicEventsTable() {
                   <th className="text-left p-4 font-medium text-muted-foreground">{t("table.actual")}</th>
                   <th className="text-left p-4 font-medium text-muted-foreground">{t("table.forecast")}</th>
                   <th className="text-left p-4 font-medium text-muted-foreground">{t("table.previous")}</th>
+                  <th className="text-left p-4 font-medium text-muted-foreground">Alert</th>
                 </tr>
               </thead>
               <tbody>
