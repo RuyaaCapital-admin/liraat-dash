@@ -36,44 +36,47 @@ export default function RootLayout({
       >
         <Analytics />
         <TooltipProvider>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="dark"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <nav className="w-full py-6 border-b border-border/50 mb-6 bg-card/50 backdrop-blur-sm">
-              <div className="container flex justify-between items-center">
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 bg-gradient-to-br from-primary to-primary/80 rounded-md flex items-center justify-center">
-                    <span className="text-black font-bold text-sm">L</span>
+          <LanguageProvider>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="dark"
+              enableSystem
+              disableTransitionOnChange
+            >
+              <nav className="w-full py-6 border-b border-border/50 mb-6 bg-card/50 backdrop-blur-sm">
+                <div className="container flex justify-between items-center">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 bg-gradient-to-br from-primary to-primary/80 rounded-md flex items-center justify-center">
+                      <span className="text-black font-bold text-sm">L</span>
+                    </div>
+                    <h1 className="text-xl font-bold text-primary">Liirat</h1>
+                    <span className="text-muted-foreground text-sm">Economic Dashboard</span>
                   </div>
-                  <h1 className="text-xl font-bold text-primary">Liirat</h1>
-                  <span className="text-muted-foreground text-sm">Economic Dashboard</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <GitHubStarButton />
-                  <ThemeSelect />
-                </div>
-              </div>
-            </nav>
-            {children}
-            <footer className="w-full py-6 border-t border-border/50 mt-auto bg-card/50">
-              <div className="container flex justify-between items-center">
-                <div className="flex items-center gap-2">
-                  <div className="w-6 h-6 bg-primary rounded flex items-center justify-center">
-                    <span className="text-black font-bold text-xs">L</span>
+                  <div className="flex items-center gap-3">
+                    <LanguageSelector />
+                    <GitHubStarButton />
+                    <ThemeSelect />
                   </div>
-                  <p className="text-sm text-muted-foreground">
-                    &copy; {new Date().getFullYear()} Liirat Ltd. Real-time Financial Intelligence
+                </div>
+              </nav>
+              {children}
+              <footer className="w-full py-6 border-t border-border/50 mt-auto bg-card/50">
+                <div className="container flex justify-between items-center">
+                  <div className="flex items-center gap-2">
+                    <div className="w-6 h-6 bg-primary rounded flex items-center justify-center">
+                      <span className="text-black font-bold text-xs">L</span>
+                    </div>
+                    <p className="text-sm text-muted-foreground">
+                      &copy; {new Date().getFullYear()} Liirat Ltd. Real-time Financial Intelligence
+                    </p>
+                  </div>
+                  <p className="text-xs text-muted-foreground">
+                    Powered by AI • Built for Traders
                   </p>
                 </div>
-                <p className="text-xs text-muted-foreground">
-                  Powered by AI • Built for Traders
-                </p>
-              </div>
-            </footer>
-          </ThemeProvider>
+              </footer>
+            </ThemeProvider>
+          </LanguageProvider>
         </TooltipProvider>
       </body>
     </html>
