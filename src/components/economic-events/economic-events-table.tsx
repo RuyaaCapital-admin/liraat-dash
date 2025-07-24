@@ -129,7 +129,7 @@ export function EconomicEventsTable() {
             <Input
               type="date"
               value={format(selectedDate, "yyyy-MM-dd")}
-              onChange={(e) => setSelectedDate(new Date(e.target.value))}
+              onChange={(e) => handleDateChange(new Date(e.target.value))}
               className="w-auto"
             />
           </div>
