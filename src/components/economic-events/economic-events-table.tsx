@@ -57,7 +57,7 @@ const getCurrencyFlag = (currency: string) => {
     EUR: "🇪🇺",
     GBP: "🇬🇧",
     JPY: "🇯🇵",
-    AUD: "🇦���",
+    AUD: "🇦🇺",
     CAD: "🇨🇦",
     CHF: "🇨🇭",
     CNY: "🇨🇳",
@@ -66,6 +66,7 @@ const getCurrencyFlag = (currency: string) => {
 };
 
 export function EconomicEventsTable() {
+  const { t, direction } = useLanguage();
   const [events, setEvents] = useState<EconomicEvent[]>([]);
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
