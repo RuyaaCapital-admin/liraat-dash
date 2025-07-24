@@ -59,12 +59,18 @@ export class FinancialApiService {
   private async getTradingEconomicsEvents(date: Date): Promise<EconomicEvent[]> {
     const dateStr = date.toISOString().split('T')[0];
     const url = `${this.config.baseUrl}/calendar?c=${this.config.apiKey}&d1=${dateStr}&d2=${dateStr}`;
-    
+
     const response = await fetch(url);
     if (!response.ok) {
-      throw new Error(`Trading Economics API error: ${response.status}`);
+      if (response.status === 401) {
+        throw new Error(`Trading Economics API authentication failed. Please check your API key.`);
+      } else if (response.status === 429) {
+        throw new Error(`Trading Economics API rate limit exceeded. Please try again later.`);
+      } else {
+        throw new Error(`Trading Economics API error: ${response.status} - ${response.statusText}`);
+      }
     }
-    
+
     const data = await response.json();
     return this.transformTradingEconomicsData(data);
   }
