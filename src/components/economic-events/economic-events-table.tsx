@@ -114,16 +114,16 @@ export function EconomicEventsTable() {
   );
 
   return (
-    <div className="space-y-6">
+    <div className={`space-y-6 ${direction === "rtl" ? "rtl" : "ltr"}`}>
       {/* Header Controls */}
       <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
         <div>
           <h2 className="text-2xl font-bold text-primary flex items-center gap-2">
             <TrendingUp className="w-6 h-6" />
-            Economic Calendar
+            {t("dashboard.title")}
           </h2>
           <p className="text-muted-foreground mt-1">
-            Real-time economic events and market-moving news
+            {t("dashboard.subtitle")}
           </p>
         </div>
         
@@ -141,7 +141,7 @@ export function EconomicEventsTable() {
           <div className="flex items-center gap-2">
             <Filter className="w-4 h-4 text-muted-foreground" />
             <Input
-              placeholder="Search events..."
+              placeholder={t("dashboard.searchPlaceholder")}
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="w-48"
@@ -156,7 +156,7 @@ export function EconomicEventsTable() {
             className="gap-2"
           >
             <RefreshCw className={`w-4 h-4 ${isRefreshing ? "animate-spin" : ""}`} />
-            Refresh
+            {t("dashboard.refresh")}
           </Button>
 
           <Button
@@ -166,7 +166,7 @@ export function EconomicEventsTable() {
             className="gap-2 bg-primary hover:bg-primary/90"
           >
             <Bot className="w-4 h-4" />
-            AI Insights
+            {t("dashboard.aiInsights")}
           </Button>
         </div>
       </div>
@@ -177,20 +177,20 @@ export function EconomicEventsTable() {
           <CardTitle className="flex items-center justify-between">
             <span className="flex items-center gap-2">
               <Clock className="w-5 h-5" />
-              Today's Events ({filteredEvents.length})
+              {t("dashboard.todaysEvents")} ({filteredEvents.length})
             </span>
             <div className="flex items-center gap-4 text-xs text-muted-foreground">
               <div className="flex items-center gap-1">
                 <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                High Impact
+                {t("impact.high")}
               </div>
               <div className="flex items-center gap-1">
                 <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
-                Medium Impact
+                {t("impact.medium")}
               </div>
               <div className="flex items-center gap-1">
                 <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                Low Impact
+                {t("impact.low")}
               </div>
             </div>
           </CardTitle>
@@ -200,13 +200,13 @@ export function EconomicEventsTable() {
             <table className="w-full">
               <thead>
                 <tr className="border-b border-border/50">
-                  <th className="text-left p-4 font-medium text-muted-foreground">Time</th>
-                  <th className="text-left p-4 font-medium text-muted-foreground">Currency</th>
-                  <th className="text-left p-4 font-medium text-muted-foreground">Impact</th>
-                  <th className="text-left p-4 font-medium text-muted-foreground">Event</th>
-                  <th className="text-left p-4 font-medium text-muted-foreground">Actual</th>
-                  <th className="text-left p-4 font-medium text-muted-foreground">Forecast</th>
-                  <th className="text-left p-4 font-medium text-muted-foreground">Previous</th>
+                  <th className="text-left p-4 font-medium text-muted-foreground">{t("table.time")}</th>
+                  <th className="text-left p-4 font-medium text-muted-foreground">{t("table.currency")}</th>
+                  <th className="text-left p-4 font-medium text-muted-foreground">{t("table.impact")}</th>
+                  <th className="text-left p-4 font-medium text-muted-foreground">{t("table.event")}</th>
+                  <th className="text-left p-4 font-medium text-muted-foreground">{t("table.actual")}</th>
+                  <th className="text-left p-4 font-medium text-muted-foreground">{t("table.forecast")}</th>
+                  <th className="text-left p-4 font-medium text-muted-foreground">{t("table.previous")}</th>
                 </tr>
               </thead>
               <tbody>
@@ -215,14 +215,14 @@ export function EconomicEventsTable() {
                     <td colSpan={7} className="p-8 text-center text-muted-foreground">
                       <div className="flex items-center justify-center gap-2">
                         <RefreshCw className="w-4 h-4 animate-spin" />
-                        Loading economic events...
+                        {t("dashboard.loading")}
                       </div>
                     </td>
                   </tr>
                 ) : filteredEvents.length === 0 ? (
                   <tr>
                     <td colSpan={7} className="p-8 text-center text-muted-foreground">
-                      No events found for the selected date.
+                      {t("dashboard.noEvents")}
                     </td>
                   </tr>
                 ) : (
@@ -253,8 +253,8 @@ export function EconomicEventsTable() {
                         <div className="flex items-center gap-2">
                           <div className={`w-3 h-3 rounded-full ${getImpactColor(event.impact)}`}></div>
                           <Badge variant="outline" className="text-xs">
-                            {getImpactLabel(event.impact)}
-                          </Badge>
+                          {getImpactLabel(event.impact, t)}
+                        </Badge>
                         </div>
                       </td>
                       <td className="p-4">
