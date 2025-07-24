@@ -283,6 +283,12 @@ export function EconomicEventsTable() {
           </div>
         </CardContent>
       </Card>
+
+      <MarketInsights
+        isOpen={showAiInsights}
+        onClose={() => setShowAiInsights(false)}
+        events={events}
+      />
     </div>
   );
 }
