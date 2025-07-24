@@ -1,5 +1,6 @@
 "use client";
 
+import { NotificationButton } from "@/components/alerts/notification-button";
 import { GitHubStarButton } from "@/components/github-star-button";
 import { LanguageSelector } from "@/components/language/language-selector";
 import { useLanguage } from "@/components/language/language-provider";
