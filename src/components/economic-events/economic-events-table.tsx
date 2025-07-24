@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { createDefaultFinancialApi } from "@/lib/financial-api";
 import { Calendar, Clock, Filter, RefreshCw, TrendingUp } from "lucide-react";
 import { useState, useEffect } from "react";
 import { format } from "date-fns";
