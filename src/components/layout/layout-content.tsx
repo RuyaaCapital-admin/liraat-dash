@@ -17,9 +17,11 @@ export function LayoutContent({ children }: LayoutContentProps) {
       <nav className="w-full py-6 border-b border-border/50 mb-6 bg-card/50 backdrop-blur-sm">
         <div className="container flex justify-between items-center">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 bg-gradient-to-br from-primary to-primary/80 rounded-md flex items-center justify-center">
-              <span className="text-black font-bold text-sm">L</span>
-            </div>
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets%2F8d6e2ebe2191474fb5a6de98317d4278%2Fae40207ed1d14041b2dc30fdddcc0531?format=webp&width=800"
+              alt="Liirat Logo"
+              className="w-8 h-8 object-contain"
+            />
             <h1 className="text-xl font-bold text-primary">{t("nav.title")}</h1>
             <span className="text-muted-foreground text-sm">{t("nav.subtitle")}</span>
           </div>
