@@ -312,6 +312,17 @@ export function EconomicEventsTable() {
                           {event.previous || "-"}
                         </span>
                       </td>
+                      <td className="p-4">
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => createQuickAlert(event)}
+                          className="gap-1"
+                          title="Create alert for this event"
+                        >
+                          <Bell className="w-3 h-3" />
+                        </Button>
+                      </td>
                     </tr>
                   ))
                 )}
