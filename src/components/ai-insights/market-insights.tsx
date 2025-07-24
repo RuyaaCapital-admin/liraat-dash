@@ -158,7 +158,7 @@ export function MarketInsights({ isOpen, onClose, events }: MarketInsightsProps)
   return (
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex">
       {/* Sidebar */}
-      <div className="w-full max-w-md bg-background border-l border-border shadow-2xl ml-auto flex flex-col h-full">
+      <div className={`w-full max-w-md bg-background border-l border-border shadow-2xl ${direction === "rtl" ? "mr-auto border-r" : "ml-auto border-l"} flex flex-col h-full`}>
         {/* Header */}
         <div className="border-b border-border p-4">
           <div className="flex items-center justify-between">
@@ -167,8 +167,8 @@ export function MarketInsights({ isOpen, onClose, events }: MarketInsightsProps)
                 <Bot className="w-4 h-4 text-black" />
               </div>
               <div>
-                <h3 className="font-semibold text-primary">AI Market Insights</h3>
-                <p className="text-xs text-muted-foreground">Powered by Liirat Intelligence</p>
+                <h3 className="font-semibold text-primary">{t("ai.title")}</h3>
+                <p className="text-xs text-muted-foreground">{t("ai.subtitle")}</p>
               </div>
             </div>
             <Button variant="ghost" size="sm" onClick={onClose}>
@@ -183,7 +183,7 @@ export function MarketInsights({ isOpen, onClose, events }: MarketInsightsProps)
           <div className="p-4 border-b border-border">
             <div className="flex items-center gap-2 mb-3">
               <Sparkles className="w-4 h-4 text-primary" />
-              <h4 className="font-medium">Market Intelligence</h4>
+              <h4 className="font-medium">{t("ai.marketIntelligence")}</h4>
             </div>
             <div className="space-y-3 max-h-48 overflow-y-auto">
               {insights.map((insight) => (
@@ -216,7 +216,7 @@ export function MarketInsights({ isOpen, onClose, events }: MarketInsightsProps)
           <div className="flex-1 flex flex-col p-4">
             <div className="flex items-center gap-2 mb-3">
               <Brain className="w-4 h-4 text-primary" />
-              <h4 className="font-medium">AI Assistant</h4>
+              <h4 className="font-medium">{t("ai.assistant")}</h4>
             </div>
             
             {/* Chat Messages */}
@@ -249,7 +249,7 @@ export function MarketInsights({ isOpen, onClose, events }: MarketInsightsProps)
                         <div className="w-2 h-2 bg-primary rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
                         <div className="w-2 h-2 bg-primary rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
                       </div>
-                      <span>AI is thinking...</span>
+                      <span>{t("ai.thinking")}</span>
                     </div>
                   </div>
                 </div>
@@ -259,7 +259,7 @@ export function MarketInsights({ isOpen, onClose, events }: MarketInsightsProps)
             {/* Input */}
             <div className="flex gap-2">
               <Input
-                placeholder="Ask about markets, events, or strategies..."
+                placeholder={t("ai.placeholder")}
                 value={inputMessage}
                 onChange={(e) => setInputMessage(e.target.value)}
                 onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
