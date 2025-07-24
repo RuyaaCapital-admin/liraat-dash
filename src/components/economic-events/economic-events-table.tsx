@@ -67,7 +67,8 @@ const getCurrencyFlag = (currency: string) => {
 };
 
 export function EconomicEventsTable() {
-  const { t, direction } = useLanguage();
+  const { t, direction, language } = useLanguage();
+  const { createAlert } = useAlerts();
   const [events, setEvents] = useState<EconomicEvent[]>([]);
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
