@@ -88,7 +88,7 @@ const translations = {
     // Navigation
     "nav.title": "ليرات",
     "nav.subtitle": "الأخبار",
-    "nav.footer": "ذكاء مالي ف�� الوقت الفعلي",
+    "nav.footer": "ذكاء مالي في الوقت الفعلي",
     "nav.poweredBy": "مدعوم بالذكاء الاصطناعي",
 
     // Dashboard
@@ -125,7 +125,35 @@ const translations = {
     "ai.assistant": "مساعد الذكاء الاصطناعي",
     "ai.placeholder": "اسأل عن الأسواق والأحداث والاستراتيجيات...",
     "ai.thinking": "الذكاء الاصطناعي يفكر...",
-    "ai.welcome": "مرحباً! أنا مساعدك التجاري بالذكاء الاصطناعي. اسألني عن الأحداث الاقتصادية اليوم، تحليل السوق، أو استراتيجيات التداول.",
+    "ai.welcome": "مرحباً! أنا مساعدك التجاري بالذكاء الاصطناعي. اسألني عن الأحداث الاقتصادية اليوم، تحليل السوق�� أو استراتيجيات التداول.",
+
+    // Notifications & Alerts
+    "notifications.title": "الإشعارات",
+    "notifications.markAllRead": "تمييز الكل كمقروء",
+    "notifications.noNotifications": "لا توجد إشعارات",
+    "notifications.manageAlerts": "إدارة التنبيهات",
+    "notifications.createAlert": "إنشاء تنبيه",
+    "alerts.title": "تنبيهاتي",
+    "alerts.createNew": "إنشاء تنبيه جديد",
+    "alerts.active": "نشط",
+    "alerts.triggered": "تم تفعيله",
+    "alerts.inactive": "غير نشط",
+    "alerts.notes": "الملاحظات",
+    "alerts.triggerTime": "وقت التفعيل",
+    "alerts.createdAt": "تاريخ الإنشاء",
+    "alerts.edit": "تعديل",
+    "alerts.delete": "حذف",
+    "alerts.activate": "تفعيل",
+    "alerts.deactivate": "إلغاء التفعيل",
+    "alerts.form.title": "عنوان التنبيه",
+    "alerts.form.description": "الوصف",
+    "alerts.form.notes": "الملاحظات الشخصية",
+    "alerts.form.currency": "العملة",
+    "alerts.form.impact": "مستوى التأثير",
+    "alerts.form.triggerTime": "تاريخ ووقت التفع��ل",
+    "alerts.form.save": "حفظ التنبيه",
+    "alerts.form.cancel": "إلغاء",
+    "alerts.form.update": "تحديث التنبيه",
   },
 };
 
