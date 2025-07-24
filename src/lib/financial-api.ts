@@ -40,12 +40,18 @@ export class FinancialApiService {
   private async getFinnhubEvents(date: Date): Promise<EconomicEvent[]> {
     const dateStr = date.toISOString().split('T')[0];
     const url = `${this.config.baseUrl}/calendar/economic?from=${dateStr}&to=${dateStr}&token=${this.config.apiKey}`;
-    
+
     const response = await fetch(url);
     if (!response.ok) {
-      throw new Error(`Finnhub API error: ${response.status}`);
+      if (response.status === 401) {
+        throw new Error(`Finnhub API authentication failed. Please check your API key.`);
+      } else if (response.status === 429) {
+        throw new Error(`Finnhub API rate limit exceeded. Please try again later.`);
+      } else {
+        throw new Error(`Finnhub API error: ${response.status} - ${response.statusText}`);
+      }
     }
-    
+
     const data = await response.json();
     return this.transformFinnhubData(data.economicCalendar || []);
   }
