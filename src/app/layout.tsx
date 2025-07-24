@@ -15,8 +15,8 @@ const fontSans = FontSans({
 });
 
 export const metadata: Metadata = {
-  title: "shadcn/ui - Big Calendar Styles",
-  description: "Big Calendar Styles",
+  title: "Liirat Economic Dashboard",
+  description: "Real-time Economic News and Events Dashboard",
 };
 
 export default function RootLayout({
