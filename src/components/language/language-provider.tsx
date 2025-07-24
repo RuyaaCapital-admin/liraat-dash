@@ -60,7 +60,7 @@ const translations = {
     // Navigation
     "nav.title": "ليرات",
     "nav.subtitle": "لوحة الاقتصاد",
-    "nav.footer": "ذكاء مالي في الوقت الفعلي",
+    "nav.footer": "ذكاء مالي في الوقت الف��لي",
     "nav.poweredBy": "مدعوم بالذكاء الاصطناعي • مصمم للمتداولين",
     
     // Dashboard
@@ -97,7 +97,7 @@ const translations = {
     "ai.assistant": "مساعد الذكاء الاصطناعي",
     "ai.placeholder": "اسأل عن الأسواق والأحداث والاستراتيجيات...",
     "ai.thinking": "الذكاء الاصطناعي يفكر...",
-    "ai.welcome": "مرحباً! أنا مساعدك التجاري بالذكاء الاصطناعي. اسألني عن الأحداث الاقتصادية اليوم، تحليل السوق، أو استر��تيجيات التداول.",
+    "ai.welcome": "مرحباً! أنا مساعدك التجاري بالذكاء الاصطناعي. اسألني عن الأحداث الاقتصادية اليوم، تحليل السوق، أو استراتيجيات التداول.",
   },
 };
 
@@ -109,9 +109,11 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
 
   const setLanguage = (newLanguage: Language) => {
     setLanguageState(newLanguage);
-    localStorage.setItem("liirat-language", newLanguage);
-    document.documentElement.dir = newLanguage === "ar" ? "rtl" : "ltr";
-    document.documentElement.lang = newLanguage;
+    if (typeof window !== 'undefined') {
+      localStorage.setItem("liirat-language", newLanguage);
+      document.documentElement.dir = newLanguage === "ar" ? "rtl" : "ltr";
+      document.documentElement.lang = newLanguage;
+    }
   };
 
   const t = (key: string): string => {
