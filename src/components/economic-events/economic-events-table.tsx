@@ -111,7 +111,7 @@ export function EconomicEventsTable() {
     }, 5 * 60 * 1000);
 
     return () => clearInterval(interval);
-  }, [selectedDate]);
+  }, [selectedDate, language]);
 
   const filteredEvents = events.filter(event => 
     event.event.toLowerCase().includes(searchTerm.toLowerCase()) ||
