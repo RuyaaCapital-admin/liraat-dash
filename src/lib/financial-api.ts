@@ -14,6 +14,12 @@ export class FinancialApiService {
   }
 
   async getEconomicEvents(date: Date): Promise<EconomicEvent[]> {
+    // Check if we have a valid API key before making requests
+    if (!this.config.apiKey || this.config.apiKey === "demo" || this.config.apiKey === "your_api_key_here") {
+      console.warn("No valid API key configured, using fallback data");
+      return this.getFallbackEvents(date);
+    }
+
     try {
       switch (this.config.provider) {
         case "finnhub":
