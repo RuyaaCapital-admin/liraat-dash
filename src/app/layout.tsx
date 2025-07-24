@@ -14,8 +14,8 @@ const fontSans = FontSans({
 });
 
 export const metadata: Metadata = {
-  title: "Liirat Economic Dashboard",
-  description: "Real-time Economic News and Events Dashboard",
+  title: "Liirat News",
+  description: "Real-time Financial News and Economic Events",
 };
 
 export default function RootLayout({
