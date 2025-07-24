@@ -1,4 +1,6 @@
 import { GitHubStarButton } from "@/components/github-star-button";
+import { LanguageProvider } from "@/components/language/language-provider";
+import { LanguageSelector } from "@/components/language/language-selector";
 import { ThemeProvider } from "@/components/theme/theme-provider";
 import { ThemeSelect } from "@/components/theme/theme-select";
 import { cn } from "@/lib/utils";
