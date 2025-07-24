@@ -36,9 +36,11 @@ export function LayoutContent({ children }: LayoutContentProps) {
       <footer className="w-full py-6 border-t border-border/50 mt-auto bg-card/50">
         <div className="container flex justify-between items-center">
           <div className="flex items-center gap-2">
-            <div className="w-6 h-6 bg-primary rounded flex items-center justify-center">
-              <span className="text-black font-bold text-xs">L</span>
-            </div>
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets%2F8d6e2ebe2191474fb5a6de98317d4278%2Fae40207ed1d14041b2dc30fdddcc0531?format=webp&width=800"
+              alt="Liirat Logo"
+              className="w-6 h-6 object-contain"
+            />
             <p className="text-sm text-muted-foreground">
               &copy; {new Date().getFullYear()} Liirat Ltd. {t("nav.footer")}
             </p>
