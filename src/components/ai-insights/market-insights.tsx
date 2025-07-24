@@ -91,12 +91,13 @@ const getImpactColor = (impact: MarketInsight["impact"]) => {
 };
 
 export function MarketInsights({ isOpen, onClose, events }: MarketInsightsProps) {
+  const { t, direction } = useLanguage();
   const [insights] = useState<MarketInsight[]>(mockInsights);
   const [chatMessages, setChatMessages] = useState<ChatMessage[]>([
     {
       id: "welcome",
       type: "ai",
-      content: "Hello! I'm your AI trading assistant. Ask me about today's economic events, market analysis, or trading strategies.",
+      content: t("ai.welcome"),
       timestamp: new Date(),
     },
   ]);
