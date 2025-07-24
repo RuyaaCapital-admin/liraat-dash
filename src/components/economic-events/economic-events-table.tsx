@@ -80,8 +80,12 @@ export function EconomicEventsTable() {
       setIsLoading(true);
       const eventData = await financialApi.getEconomicEvents(date);
       setEvents(eventData);
+      // Check if we're using fallback data (all mock events have "mock-" prefix)
+      const isUsingFallback = eventData.every(event => event.id.startsWith("mock-"));
+      setUsingFallbackData(isUsingFallback);
     } catch (error) {
       console.error("Failed to load events:", error);
+      setUsingFallbackData(true);
     } finally {
       setIsLoading(false);
     }
