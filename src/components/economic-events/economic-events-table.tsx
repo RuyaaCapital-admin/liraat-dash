@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { MarketInsights } from "@/components/ai-insights/market-insights";
+import { useLanguage } from "@/components/language/language-provider";
 import { createDefaultFinancialApi } from "@/lib/financial-api";
 import { Bot, Calendar, Clock, Filter, RefreshCw, TrendingUp } from "lucide-react";
 import { useState, useEffect } from "react";
@@ -56,7 +57,7 @@ const getCurrencyFlag = (currency: string) => {
     EUR: "🇪🇺",
     GBP: "🇬🇧",
     JPY: "🇯🇵",
-    AUD: "🇦🇺",
+    AUD: "🇦���",
     CAD: "🇨🇦",
     CHF: "🇨🇭",
     CNY: "🇨🇳",
