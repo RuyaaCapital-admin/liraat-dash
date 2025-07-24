@@ -196,59 +196,76 @@ export function EconomicEventsTable() {
                 </tr>
               </thead>
               <tbody>
-                {filteredEvents.map((event) => (
-                  <tr 
-                    key={event.id} 
-                    className={`border-b border-border/30 hover:bg-muted/30 transition-colors ${
-                      event.isLive ? "bg-primary/5 border-primary/30" : ""
-                    }`}
-                  >
-                    <td className="p-4">
-                      <div className="flex items-center gap-2">
-                        {event.isLive && (
-                          <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
-                        )}
-                        <span className="font-mono text-sm">
-                          {format(event.time, "HH:mm")}
-                        </span>
+                {isLoading ? (
+                  <tr>
+                    <td colSpan={7} className="p-8 text-center text-muted-foreground">
+                      <div className="flex items-center justify-center gap-2">
+                        <RefreshCw className="w-4 h-4 animate-spin" />
+                        Loading economic events...
                       </div>
-                    </td>
-                    <td className="p-4">
-                      <div className="flex items-center gap-2">
-                        <span className="text-lg">{getCurrencyFlag(event.currency)}</span>
-                        <span className="font-semibold">{event.currency}</span>
-                      </div>
-                    </td>
-                    <td className="p-4">
-                      <div className="flex items-center gap-2">
-                        <div className={`w-3 h-3 rounded-full ${getImpactColor(event.impact)}`}></div>
-                        <Badge variant="outline" className="text-xs">
-                          {getImpactLabel(event.impact)}
-                        </Badge>
-                      </div>
-                    </td>
-                    <td className="p-4">
-                      <span className="font-medium text-sm">{event.event}</span>
-                    </td>
-                    <td className="p-4">
-                      <span className={`font-mono text-sm ${
-                        event.actual ? "text-primary font-semibold" : "text-muted-foreground"
-                      }`}>
-                        {event.actual || "-"}
-                      </span>
-                    </td>
-                    <td className="p-4">
-                      <span className="font-mono text-sm text-muted-foreground">
-                        {event.forecast || "-"}
-                      </span>
-                    </td>
-                    <td className="p-4">
-                      <span className="font-mono text-sm text-muted-foreground">
-                        {event.previous || "-"}
-                      </span>
                     </td>
                   </tr>
-                ))}
+                ) : filteredEvents.length === 0 ? (
+                  <tr>
+                    <td colSpan={7} className="p-8 text-center text-muted-foreground">
+                      No events found for the selected date.
+                    </td>
+                  </tr>
+                ) : (
+                  filteredEvents.map((event) => (
+                    <tr
+                      key={event.id}
+                      className={`border-b border-border/30 hover:bg-muted/30 transition-colors ${
+                        event.isLive ? "bg-primary/5 border-primary/30" : ""
+                      }`}
+                    >
+                      <td className="p-4">
+                        <div className="flex items-center gap-2">
+                          {event.isLive && (
+                            <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
+                          )}
+                          <span className="font-mono text-sm">
+                            {format(event.time, "HH:mm")}
+                          </span>
+                        </div>
+                      </td>
+                      <td className="p-4">
+                        <div className="flex items-center gap-2">
+                          <span className="text-lg">{getCurrencyFlag(event.currency)}</span>
+                          <span className="font-semibold">{event.currency}</span>
+                        </div>
+                      </td>
+                      <td className="p-4">
+                        <div className="flex items-center gap-2">
+                          <div className={`w-3 h-3 rounded-full ${getImpactColor(event.impact)}`}></div>
+                          <Badge variant="outline" className="text-xs">
+                            {getImpactLabel(event.impact)}
+                          </Badge>
+                        </div>
+                      </td>
+                      <td className="p-4">
+                        <span className="font-medium text-sm">{event.event}</span>
+                      </td>
+                      <td className="p-4">
+                        <span className={`font-mono text-sm ${
+                          event.actual ? "text-primary font-semibold" : "text-muted-foreground"
+                        }`}>
+                          {event.actual || "-"}
+                        </span>
+                      </td>
+                      <td className="p-4">
+                        <span className="font-mono text-sm text-muted-foreground">
+                          {event.forecast || "-"}
+                        </span>
+                      </td>
+                      <td className="p-4">
+                        <span className="font-mono text-sm text-muted-foreground">
+                          {event.previous || "-"}
+                        </span>
+                      </td>
+                    </tr>
+                  ))
+                )}
               </tbody>
             </table>
           </div>
