@@ -35,14 +35,16 @@ export default function RootLayout({
         <Analytics />
         <TooltipProvider>
           <LanguageProvider>
-            <ThemeProvider
-              attribute="class"
-              defaultTheme="dark"
-              enableSystem
-              disableTransitionOnChange
-            >
-              <LayoutContent>{children}</LayoutContent>
-            </ThemeProvider>
+            <AlertsProvider>
+              <ThemeProvider
+                attribute="class"
+                defaultTheme="dark"
+                enableSystem
+                disableTransitionOnChange
+              >
+                <LayoutContent>{children}</LayoutContent>
+              </ThemeProvider>
+            </AlertsProvider>
           </LanguageProvider>
         </TooltipProvider>
       </body>
