@@ -70,6 +70,7 @@ export function EconomicEventsTable() {
   const [isLoading, setIsLoading] = useState(true);
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [searchTerm, setSearchTerm] = useState("");
+  const [showAiInsights, setShowAiInsights] = useState(false);
 
   const loadEvents = async (date: Date) => {
     try {
