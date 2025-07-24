@@ -59,10 +59,10 @@ const translations = {
   ar: {
     // Navigation
     "nav.title": "ليرات",
-    "nav.subtitle": "لوحة الاقتصاد",
+    "nav.subtitle": "الأخبار",
     "nav.footer": "ذكاء مالي في الوقت الفعلي",
-    "nav.poweredBy": "مدعوم بالذكاء الاصطناعي • مصمم للمتداولين",
-    
+    "nav.poweredBy": "مدعوم بالذكاء الاصطناعي",
+
     // Dashboard
     "dashboard.title": "التقويم الاقتصادي",
     "dashboard.subtitle": "الأحداث الاقتصادية والأخبار المؤثرة على الأسواق في الوقت الفعلي",
