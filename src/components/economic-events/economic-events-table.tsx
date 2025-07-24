@@ -21,46 +21,7 @@ export interface EconomicEvent {
   isLive?: boolean;
 }
 
-const mockEvents: EconomicEvent[] = [
-  {
-    id: "1",
-    time: new Date(2024, 11, 20, 9, 30),
-    currency: "USD",
-    impact: "high",
-    event: "Federal Reserve Interest Rate Decision",
-    actual: "5.25%",
-    forecast: "5.25%",
-    previous: "5.00%",
-    isLive: true,
-  },
-  {
-    id: "2",
-    time: new Date(2024, 11, 20, 14, 0),
-    currency: "EUR",
-    impact: "medium",
-    event: "ECB Monetary Policy Statement",
-    forecast: "0.50%",
-    previous: "0.25%",
-  },
-  {
-    id: "3",
-    time: new Date(2024, 11, 20, 15, 30),
-    currency: "GBP",
-    impact: "high",
-    event: "UK GDP Quarterly Growth",
-    forecast: "0.2%",
-    previous: "0.1%",
-  },
-  {
-    id: "4",
-    time: new Date(2024, 11, 20, 16, 0),
-    currency: "JPY",
-    impact: "low",
-    event: "Bank of Japan Press Conference",
-    forecast: "-0.1%",
-    previous: "0.0%",
-  },
-];
+const financialApi = createDefaultFinancialApi();
 
 const getImpactColor = (impact: EconomicEvent["impact"]) => {
   switch (impact) {
