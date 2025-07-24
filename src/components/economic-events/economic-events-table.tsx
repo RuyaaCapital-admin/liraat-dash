@@ -8,7 +8,16 @@ import { useAlerts } from "@/components/alerts/alerts-provider";
 import { MarketInsights } from "@/components/ai-insights/market-insights";
 import { useLanguage } from "@/components/language/language-provider";
 import { createDefaultFinancialApi } from "@/lib/financial-api";
-import { AlertTriangle, Bell, Bot, Calendar, Clock, Filter, RefreshCw, TrendingUp } from "lucide-react";
+import {
+  AlertTriangle,
+  Bell,
+  Bot,
+  Calendar,
+  Clock,
+  Filter,
+  RefreshCw,
+  TrendingUp,
+} from "lucide-react";
 import { useState, useEffect } from "react";
 import { format } from "date-fns";
 
@@ -39,7 +48,10 @@ const getImpactColor = (impact: EconomicEvent["impact"]) => {
   }
 };
 
-const getImpactLabel = (impact: EconomicEvent["impact"], t: (key: string) => string) => {
+const getImpactLabel = (
+  impact: EconomicEvent["impact"],
+  t: (key: string) => string
+) => {
   switch (impact) {
     case "high":
       return t("impact.highLabel");
@@ -83,7 +95,9 @@ export function EconomicEventsTable() {
       const eventData = await financialApi.getEconomicEvents(date, language);
       setEvents(eventData);
       // Check if we're using fallback data (all mock events have "mock-" prefix)
-      const isUsingFallback = eventData.every(event => event.id.startsWith("mock-"));
+      const isUsingFallback = eventData.every((event) =>
+        event.id.startsWith("mock-")
+      );
       setUsingFallbackData(isUsingFallback);
     } catch (error) {
       console.error("Failed to load events:", error);
@@ -123,16 +137,20 @@ export function EconomicEventsTable() {
     loadEvents(selectedDate);
 
     // Set up auto-refresh every 5 minutes
-    const interval = setInterval(() => {
-      loadEvents(selectedDate);
-    }, 5 * 60 * 1000);
+    const interval = setInterval(
+      () => {
+        loadEvents(selectedDate);
+      },
+      5 * 60 * 1000
+    );
 
     return () => clearInterval(interval);
   }, [selectedDate, language]);
 
-  const filteredEvents = events.filter(event => 
-    event.event.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    event.currency.toLowerCase().includes(searchTerm.toLowerCase())
+  const filteredEvents = events.filter(
+    (event) =>
+      event.event.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      event.currency.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
@@ -143,7 +161,8 @@ export function EconomicEventsTable() {
           <div className="flex items-center gap-2 text-yellow-600 dark:text-yellow-400">
             <AlertTriangle className="w-4 h-4" />
             <span className="text-sm font-medium">
-              Demo Mode: Using sample data. Configure API keys in environment variables for live data.
+              Demo Mode: Using sample data. Configure API keys in environment
+              variables for live data.
             </span>
           </div>
         </div>
@@ -160,7 +179,7 @@ export function EconomicEventsTable() {
             {t("dashboard.subtitle")}
           </p>
         </div>
-        
+
         <div className="flex flex-wrap gap-3">
           <div className="flex items-center gap-2">
             <Calendar className="w-4 h-4 text-muted-foreground" />
@@ -171,7 +190,7 @@ export function EconomicEventsTable() {
               className="w-auto"
             />
           </div>
-          
+
           <div className="flex items-center gap-2">
             <Filter className="w-4 h-4 text-muted-foreground" />
             <Input
@@ -181,7 +200,7 @@ export function EconomicEventsTable() {
               className="w-48"
             />
           </div>
-          
+
           <Button
             onClick={handleRefresh}
             disabled={isRefreshing}
@@ -189,7 +208,9 @@ export function EconomicEventsTable() {
             size="sm"
             className="gap-2"
           >
-            <RefreshCw className={`w-4 h-4 ${isRefreshing ? "animate-spin" : ""}`} />
+            <RefreshCw
+              className={`w-4 h-4 ${isRefreshing ? "animate-spin" : ""}`}
+            />
             {t("dashboard.refresh")}
           </Button>
 
@@ -234,20 +255,39 @@ export function EconomicEventsTable() {
             <table className="w-full">
               <thead>
                 <tr className="border-b border-border/50">
-                  <th className="text-left p-4 font-medium text-muted-foreground">{t("table.time")}</th>
-                  <th className="text-left p-4 font-medium text-muted-foreground">{t("table.currency")}</th>
-                  <th className="text-left p-4 font-medium text-muted-foreground">{t("table.impact")}</th>
-                  <th className="text-left p-4 font-medium text-muted-foreground">{t("table.event")}</th>
-                  <th className="text-left p-4 font-medium text-muted-foreground">{t("table.actual")}</th>
-                  <th className="text-left p-4 font-medium text-muted-foreground">{t("table.forecast")}</th>
-                  <th className="text-left p-4 font-medium text-muted-foreground">{t("table.previous")}</th>
-                  <th className="text-left p-4 font-medium text-muted-foreground">Alert</th>
+                  <th className="text-left p-4 font-medium text-muted-foreground">
+                    {t("table.time")}
+                  </th>
+                  <th className="text-left p-4 font-medium text-muted-foreground">
+                    {t("table.currency")}
+                  </th>
+                  <th className="text-left p-4 font-medium text-muted-foreground">
+                    {t("table.impact")}
+                  </th>
+                  <th className="text-left p-4 font-medium text-muted-foreground">
+                    {t("table.event")}
+                  </th>
+                  <th className="text-left p-4 font-medium text-muted-foreground">
+                    {t("table.actual")}
+                  </th>
+                  <th className="text-left p-4 font-medium text-muted-foreground">
+                    {t("table.forecast")}
+                  </th>
+                  <th className="text-left p-4 font-medium text-muted-foreground">
+                    {t("table.previous")}
+                  </th>
+                  <th className="text-left p-4 font-medium text-muted-foreground">
+                    Alert
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 {isLoading ? (
                   <tr>
-                    <td colSpan={8} className="p-8 text-center text-muted-foreground">
+                    <td
+                      colSpan={8}
+                      className="p-8 text-center text-muted-foreground"
+                    >
                       <div className="flex items-center justify-center gap-2">
                         <RefreshCw className="w-4 h-4 animate-spin" />
                         {t("dashboard.loading")}
@@ -256,7 +296,10 @@ export function EconomicEventsTable() {
                   </tr>
                 ) : filteredEvents.length === 0 ? (
                   <tr>
-                    <td colSpan={8} className="p-8 text-center text-muted-foreground">
+                    <td
+                      colSpan={8}
+                      className="p-8 text-center text-muted-foreground"
+                    >
                       {t("dashboard.noEvents")}
                     </td>
                   </tr>
@@ -280,25 +323,37 @@ export function EconomicEventsTable() {
                       </td>
                       <td className="p-4">
                         <div className="flex items-center gap-2">
-                          <span className="text-lg">{getCurrencyFlag(event.currency)}</span>
-                          <span className="font-semibold">{event.currency}</span>
+                          <span className="text-lg">
+                            {getCurrencyFlag(event.currency)}
+                          </span>
+                          <span className="font-semibold">
+                            {event.currency}
+                          </span>
                         </div>
                       </td>
                       <td className="p-4">
                         <div className="flex items-center gap-2">
-                          <div className={`w-3 h-3 rounded-full ${getImpactColor(event.impact)}`}></div>
+                          <div
+                            className={`w-3 h-3 rounded-full ${getImpactColor(event.impact)}`}
+                          ></div>
                           <Badge variant="outline" className="text-xs">
-                          {getImpactLabel(event.impact, t)}
-                        </Badge>
+                            {getImpactLabel(event.impact, t)}
+                          </Badge>
                         </div>
                       </td>
                       <td className="p-4">
-                        <span className="font-medium text-sm">{event.event}</span>
+                        <span className="font-medium text-sm">
+                          {event.event}
+                        </span>
                       </td>
                       <td className="p-4">
-                        <span className={`font-mono text-sm ${
-                          event.actual ? "text-primary font-semibold" : "text-muted-foreground"
-                        }`}>
+                        <span
+                          className={`font-mono text-sm ${
+                            event.actual
+                              ? "text-primary font-semibold"
+                              : "text-muted-foreground"
+                          }`}
+                        >
                           {event.actual || "-"}
                         </span>
                       </td>

@@ -14,7 +14,7 @@ import {
   X,
   TrendingUp,
   AlertTriangle,
-  Info
+  Info,
 } from "lucide-react";
 import { useState } from "react";
 import { EconomicEvent } from "@/components/economic-events/economic-events-table";
@@ -46,7 +46,8 @@ const mockInsights: MarketInsight[] = [
     id: "1",
     type: "alert",
     title: "Fed Rate Decision Alert",
-    content: "The Federal Reserve is expected to maintain rates at 5.25%, which could impact USD strength and global markets.",
+    content:
+      "The Federal Reserve is expected to maintain rates at 5.25%, which could impact USD strength and global markets.",
     timestamp: new Date(),
     impact: "high",
   },
@@ -54,7 +55,8 @@ const mockInsights: MarketInsight[] = [
     id: "2",
     type: "summary",
     title: "Today's Market Overview",
-    content: "High volatility expected with 3 high-impact events scheduled. Focus on USD and EUR movements around Fed and ECB announcements.",
+    content:
+      "High volatility expected with 3 high-impact events scheduled. Focus on USD and EUR movements around Fed and ECB announcements.",
     timestamp: new Date(Date.now() - 10 * 60 * 1000),
     impact: "medium",
   },
@@ -62,7 +64,8 @@ const mockInsights: MarketInsight[] = [
     id: "3",
     type: "analysis",
     title: "Trading Opportunity",
-    content: "GBP/USD may see increased volatility around the UK GDP announcement. Consider risk management strategies.",
+    content:
+      "GBP/USD may see increased volatility around the UK GDP announcement. Consider risk management strategies.",
     timestamp: new Date(Date.now() - 30 * 60 * 1000),
     impact: "medium",
   },
@@ -90,7 +93,11 @@ const getImpactColor = (impact: MarketInsight["impact"]) => {
   }
 };
 
-export function MarketInsights({ isOpen, onClose, events }: MarketInsightsProps) {
+export function MarketInsights({
+  isOpen,
+  onClose,
+  events,
+}: MarketInsightsProps) {
   const { t, direction } = useLanguage();
   const [insights] = useState<MarketInsight[]>(mockInsights);
   const [chatMessages, setChatMessages] = useState<ChatMessage[]>([
@@ -114,7 +121,7 @@ export function MarketInsights({ isOpen, onClose, events }: MarketInsightsProps)
       timestamp: new Date(),
     };
 
-    setChatMessages(prev => [...prev, userMessage]);
+    setChatMessages((prev) => [...prev, userMessage]);
     setInputMessage("");
     setIsProcessing(true);
 
@@ -126,30 +133,36 @@ export function MarketInsights({ isOpen, onClose, events }: MarketInsightsProps)
         content: generateAIResponse(inputMessage, events),
         timestamp: new Date(),
       };
-      setChatMessages(prev => [...prev, aiResponse]);
+      setChatMessages((prev) => [...prev, aiResponse]);
       setIsProcessing(false);
     }, 1500);
   };
 
-  const generateAIResponse = (message: string, events: EconomicEvent[]): string => {
+  const generateAIResponse = (
+    message: string,
+    events: EconomicEvent[]
+  ): string => {
     const lowerMessage = message.toLowerCase();
-    
-    if (lowerMessage.includes("fed") || lowerMessage.includes("interest rate")) {
+
+    if (
+      lowerMessage.includes("fed") ||
+      lowerMessage.includes("interest rate")
+    ) {
       return "Based on today's Federal Reserve meeting, I expect continued hawkish sentiment with rates likely held at 5.25%. This could strengthen USD in the short term. Watch for any changes in forward guidance language.";
     }
-    
+
     if (lowerMessage.includes("gdp") || lowerMessage.includes("growth")) {
       return "The upcoming UK GDP data is crucial for GBP direction. Consensus is 0.2% growth. A beat could push GBP/USD higher, while a miss might trigger selling pressure. Consider tight stops given Brexit uncertainty.";
     }
-    
+
     if (lowerMessage.includes("strategy") || lowerMessage.includes("trade")) {
       return "Given today's high-impact events, I recommend: 1) Reduce position sizes before major announcements, 2) Set wider stops to account for volatility, 3) Focus on USD and EUR pairs, 4) Avoid trading 30 minutes before/after major releases.";
     }
-    
+
     if (lowerMessage.includes("risk") || lowerMessage.includes("volatility")) {
       return "Current market volatility is elevated due to multiple central bank events. Risk-on sentiment is fragile. Consider hedging positions and maintaining adequate cash reserves. VIX levels suggest continued uncertainty.";
     }
-    
+
     return "That's an interesting question about the current market conditions. Based on today's economic calendar, I see several high-impact events that could create trading opportunities. Would you like me to elaborate on any specific currency pair or event?";
   };
 
@@ -158,7 +171,9 @@ export function MarketInsights({ isOpen, onClose, events }: MarketInsightsProps)
   return (
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex">
       {/* Sidebar */}
-      <div className={`w-full max-w-md bg-background border-l border-border shadow-2xl ${direction === "rtl" ? "mr-auto border-r" : "ml-auto border-l"} flex flex-col h-full`}>
+      <div
+        className={`w-full max-w-md bg-background border-l border-border shadow-2xl ${direction === "rtl" ? "mr-auto border-r" : "ml-auto border-l"} flex flex-col h-full`}
+      >
         {/* Header */}
         <div className="border-b border-border p-4">
           <div className="flex items-center justify-between">
@@ -168,7 +183,9 @@ export function MarketInsights({ isOpen, onClose, events }: MarketInsightsProps)
               </div>
               <div>
                 <h3 className="font-semibold text-primary">{t("ai.title")}</h3>
-                <p className="text-xs text-muted-foreground">{t("ai.subtitle")}</p>
+                <p className="text-xs text-muted-foreground">
+                  {t("ai.subtitle")}
+                </p>
               </div>
             </div>
             <Button variant="ghost" size="sm" onClick={onClose}>
@@ -193,8 +210,13 @@ export function MarketInsights({ isOpen, onClose, events }: MarketInsightsProps)
                       {getInsightIcon(insight.type)}
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 mb-1">
-                          <h5 className="text-sm font-medium truncate">{insight.title}</h5>
-                          <Badge variant="outline" className={`text-xs ${getImpactColor(insight.impact)}`}>
+                          <h5 className="text-sm font-medium truncate">
+                            {insight.title}
+                          </h5>
+                          <Badge
+                            variant="outline"
+                            className={`text-xs ${getImpactColor(insight.impact)}`}
+                          >
                             {insight.impact}
                           </Badge>
                         </div>
@@ -202,7 +224,10 @@ export function MarketInsights({ isOpen, onClose, events }: MarketInsightsProps)
                           {insight.content}
                         </p>
                         <span className="text-xs text-muted-foreground">
-                          {insight.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                          {insight.timestamp.toLocaleTimeString([], {
+                            hour: "2-digit",
+                            minute: "2-digit",
+                          })}
                         </span>
                       </div>
                     </div>
@@ -218,7 +243,7 @@ export function MarketInsights({ isOpen, onClose, events }: MarketInsightsProps)
               <Brain className="w-4 h-4 text-primary" />
               <h4 className="font-medium">{t("ai.assistant")}</h4>
             </div>
-            
+
             {/* Chat Messages */}
             <div className="flex-1 overflow-y-auto space-y-3 mb-3">
               {chatMessages.map((message) => (
@@ -235,7 +260,10 @@ export function MarketInsights({ isOpen, onClose, events }: MarketInsightsProps)
                   >
                     <p>{message.content}</p>
                     <span className="text-xs opacity-70">
-                      {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                      {message.timestamp.toLocaleTimeString([], {
+                        hour: "2-digit",
+                        minute: "2-digit",
+                      })}
                     </span>
                   </div>
                 </div>
@@ -246,8 +274,14 @@ export function MarketInsights({ isOpen, onClose, events }: MarketInsightsProps)
                     <div className="flex items-center gap-2">
                       <div className="flex space-x-1">
                         <div className="w-2 h-2 bg-primary rounded-full animate-bounce"></div>
-                        <div className="w-2 h-2 bg-primary rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-                        <div className="w-2 h-2 bg-primary rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                        <div
+                          className="w-2 h-2 bg-primary rounded-full animate-bounce"
+                          style={{ animationDelay: "0.1s" }}
+                        ></div>
+                        <div
+                          className="w-2 h-2 bg-primary rounded-full animate-bounce"
+                          style={{ animationDelay: "0.2s" }}
+                        ></div>
                       </div>
                       <span>{t("ai.thinking")}</span>
                     </div>

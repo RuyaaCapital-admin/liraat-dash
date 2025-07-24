@@ -13,9 +13,16 @@ export class FinancialApiService {
     this.config = config;
   }
 
-  async getEconomicEvents(date: Date, language: string = "en"): Promise<EconomicEvent[]> {
+  async getEconomicEvents(
+    date: Date,
+    language: string = "en"
+  ): Promise<EconomicEvent[]> {
     // Check if we have a valid API key before making requests
-    if (!this.config.apiKey || this.config.apiKey === "demo" || this.config.apiKey === "your_api_key_here") {
+    if (
+      !this.config.apiKey ||
+      this.config.apiKey === "demo" ||
+      this.config.apiKey === "your_api_key_here"
+    ) {
       console.warn("No valid API key configured, using fallback data");
       return this.getFallbackEvents(date, language);
     }
@@ -38,17 +45,23 @@ export class FinancialApiService {
   }
 
   private async getFinnhubEvents(date: Date): Promise<EconomicEvent[]> {
-    const dateStr = date.toISOString().split('T')[0];
+    const dateStr = date.toISOString().split("T")[0];
     const url = `${this.config.baseUrl}/calendar/economic?from=${dateStr}&to=${dateStr}&token=${this.config.apiKey}`;
 
     const response = await fetch(url);
     if (!response.ok) {
       if (response.status === 401) {
-        throw new Error(`Finnhub API authentication failed. Please check your API key.`);
+        throw new Error(
+          `Finnhub API authentication failed. Please check your API key.`
+        );
       } else if (response.status === 429) {
-        throw new Error(`Finnhub API rate limit exceeded. Please try again later.`);
+        throw new Error(
+          `Finnhub API rate limit exceeded. Please try again later.`
+        );
       } else {
-        throw new Error(`Finnhub API error: ${response.status} - ${response.statusText}`);
+        throw new Error(
+          `Finnhub API error: ${response.status} - ${response.statusText}`
+        );
       }
     }
 
@@ -56,18 +69,26 @@ export class FinancialApiService {
     return this.transformFinnhubData(data.economicCalendar || []);
   }
 
-  private async getTradingEconomicsEvents(date: Date): Promise<EconomicEvent[]> {
-    const dateStr = date.toISOString().split('T')[0];
+  private async getTradingEconomicsEvents(
+    date: Date
+  ): Promise<EconomicEvent[]> {
+    const dateStr = date.toISOString().split("T")[0];
     const url = `${this.config.baseUrl}/calendar?c=${this.config.apiKey}&d1=${dateStr}&d2=${dateStr}`;
 
     const response = await fetch(url);
     if (!response.ok) {
       if (response.status === 401) {
-        throw new Error(`Trading Economics API authentication failed. Please check your API key.`);
+        throw new Error(
+          `Trading Economics API authentication failed. Please check your API key.`
+        );
       } else if (response.status === 429) {
-        throw new Error(`Trading Economics API rate limit exceeded. Please try again later.`);
+        throw new Error(
+          `Trading Economics API rate limit exceeded. Please try again later.`
+        );
       } else {
-        throw new Error(`Trading Economics API error: ${response.status} - ${response.statusText}`);
+        throw new Error(
+          `Trading Economics API error: ${response.status} - ${response.statusText}`
+        );
       }
     }
 
@@ -76,17 +97,23 @@ export class FinancialApiService {
   }
 
   private async getMarketauxEvents(date: Date): Promise<EconomicEvent[]> {
-    const dateStr = date.toISOString().split('T')[0];
+    const dateStr = date.toISOString().split("T")[0];
     const url = `${this.config.baseUrl}/v1/news/all?published_on=${dateStr}&api_token=${this.config.apiKey}&categories=general,forex&limit=50`;
 
     const response = await fetch(url);
     if (!response.ok) {
       if (response.status === 401) {
-        throw new Error(`Marketaux API authentication failed. Please check your API key.`);
+        throw new Error(
+          `Marketaux API authentication failed. Please check your API key.`
+        );
       } else if (response.status === 429) {
-        throw new Error(`Marketaux API rate limit exceeded. Please try again later.`);
+        throw new Error(
+          `Marketaux API rate limit exceeded. Please try again later.`
+        );
       } else {
-        throw new Error(`Marketaux API error: ${response.status} - ${response.statusText}`);
+        throw new Error(
+          `Marketaux API error: ${response.status} - ${response.statusText}`
+        );
       }
     }
 
@@ -128,7 +155,8 @@ export class FinancialApiService {
       time: new Date(item.published_at),
       currency: this.extractCurrencyFromTitle(item.title) || "USD",
       impact: this.guessImpactFromTitle(item.title),
-      event: item.title.substring(0, 80) + (item.title.length > 80 ? "..." : ""),
+      event:
+        item.title.substring(0, 80) + (item.title.length > 80 ? "..." : ""),
       actual: undefined,
       forecast: undefined,
       previous: undefined,
@@ -153,19 +181,19 @@ export class FinancialApiService {
 
   private getCurrencyFromCountry(country: string): string | null {
     const countryToCurrency: Record<string, string> = {
-      "US": "USD",
+      US: "USD",
       "United States": "USD",
-      "EU": "EUR",
-      "Eurozone": "EUR",
-      "Germany": "EUR",
-      "France": "EUR",
-      "UK": "GBP",
+      EU: "EUR",
+      Eurozone: "EUR",
+      Germany: "EUR",
+      France: "EUR",
+      UK: "GBP",
       "United Kingdom": "GBP",
-      "Japan": "JPY",
-      "Australia": "AUD",
-      "Canada": "CAD",
-      "Switzerland": "CHF",
-      "China": "CNY",
+      Japan: "JPY",
+      Australia: "AUD",
+      Canada: "CAD",
+      Switzerland: "CHF",
+      China: "CNY",
     };
     return countryToCurrency[country] || null;
   }
@@ -181,15 +209,27 @@ export class FinancialApiService {
   }
 
   private guessImpactFromTitle(title: string): "high" | "medium" | "low" {
-    const highImpactKeywords = ["fed", "interest rate", "gdp", "inflation", "employment", "central bank"];
-    const mediumImpactKeywords = ["retail", "manufacturing", "housing", "trade"];
-    
+    const highImpactKeywords = [
+      "fed",
+      "interest rate",
+      "gdp",
+      "inflation",
+      "employment",
+      "central bank",
+    ];
+    const mediumImpactKeywords = [
+      "retail",
+      "manufacturing",
+      "housing",
+      "trade",
+    ];
+
     const lowerTitle = title.toLowerCase();
-    
-    if (highImpactKeywords.some(keyword => lowerTitle.includes(keyword))) {
+
+    if (highImpactKeywords.some((keyword) => lowerTitle.includes(keyword))) {
       return "high";
     }
-    if (mediumImpactKeywords.some(keyword => lowerTitle.includes(keyword))) {
+    if (mediumImpactKeywords.some((keyword) => lowerTitle.includes(keyword))) {
       return "medium";
     }
     return "low";
@@ -197,16 +237,26 @@ export class FinancialApiService {
 
   private isEventLive(eventTime: Date): boolean {
     const now = new Date();
-    const diffMinutes = Math.abs(now.getTime() - eventTime.getTime()) / (1000 * 60);
+    const diffMinutes =
+      Math.abs(now.getTime() - eventTime.getTime()) / (1000 * 60);
     return diffMinutes <= 30; // Consider events within 30 minutes as "live"
   }
 
-  private getFallbackEvents(date: Date, language: string = "en"): EconomicEvent[] {
+  private getFallbackEvents(
+    date: Date,
+    language: string = "en"
+  ): EconomicEvent[] {
     const eventsData = {
       en: [
         {
           id: "mock-1",
-          time: new Date(date.getFullYear(), date.getMonth(), date.getDate(), 9, 30),
+          time: new Date(
+            date.getFullYear(),
+            date.getMonth(),
+            date.getDate(),
+            9,
+            30
+          ),
           currency: "USD",
           impact: "high" as const,
           event: "Federal Reserve Interest Rate Decision",
@@ -217,7 +267,13 @@ export class FinancialApiService {
         },
         {
           id: "mock-2",
-          time: new Date(date.getFullYear(), date.getMonth(), date.getDate(), 14, 0),
+          time: new Date(
+            date.getFullYear(),
+            date.getMonth(),
+            date.getDate(),
+            14,
+            0
+          ),
           currency: "EUR",
           impact: "medium" as const,
           event: "ECB Monetary Policy Statement",
@@ -226,7 +282,13 @@ export class FinancialApiService {
         },
         {
           id: "mock-3",
-          time: new Date(date.getFullYear(), date.getMonth(), date.getDate(), 15, 30),
+          time: new Date(
+            date.getFullYear(),
+            date.getMonth(),
+            date.getDate(),
+            15,
+            30
+          ),
           currency: "GBP",
           impact: "high" as const,
           event: "UK GDP Quarterly Growth",
@@ -235,7 +297,13 @@ export class FinancialApiService {
         },
         {
           id: "mock-4",
-          time: new Date(date.getFullYear(), date.getMonth(), date.getDate(), 16, 0),
+          time: new Date(
+            date.getFullYear(),
+            date.getMonth(),
+            date.getDate(),
+            16,
+            0
+          ),
           currency: "JPY",
           impact: "low" as const,
           event: "Bank of Japan Press Conference",
@@ -244,7 +312,13 @@ export class FinancialApiService {
         },
         {
           id: "mock-5",
-          time: new Date(date.getFullYear(), date.getMonth(), date.getDate(), 10, 0),
+          time: new Date(
+            date.getFullYear(),
+            date.getMonth(),
+            date.getDate(),
+            10,
+            0
+          ),
           currency: "USD",
           impact: "medium" as const,
           event: "Non-Farm Payrolls",
@@ -254,7 +328,13 @@ export class FinancialApiService {
         },
         {
           id: "mock-6",
-          time: new Date(date.getFullYear(), date.getMonth(), date.getDate(), 12, 30),
+          time: new Date(
+            date.getFullYear(),
+            date.getMonth(),
+            date.getDate(),
+            12,
+            30
+          ),
           currency: "CAD",
           impact: "low" as const,
           event: "Bank of Canada Rate Statement",
@@ -265,7 +345,13 @@ export class FinancialApiService {
       ar: [
         {
           id: "mock-1",
-          time: new Date(date.getFullYear(), date.getMonth(), date.getDate(), 9, 30),
+          time: new Date(
+            date.getFullYear(),
+            date.getMonth(),
+            date.getDate(),
+            9,
+            30
+          ),
           currency: "USD",
           impact: "high" as const,
           event: "قرار الاحتياطي الفيدرالي بشأن أسعار الفائدة",
@@ -276,7 +362,13 @@ export class FinancialApiService {
         },
         {
           id: "mock-2",
-          time: new Date(date.getFullYear(), date.getMonth(), date.getDate(), 14, 0),
+          time: new Date(
+            date.getFullYear(),
+            date.getMonth(),
+            date.getDate(),
+            14,
+            0
+          ),
           currency: "EUR",
           impact: "medium" as const,
           event: "بيان السياسة النقدية للبنك المركزي الأوروبي",
@@ -285,7 +377,13 @@ export class FinancialApiService {
         },
         {
           id: "mock-3",
-          time: new Date(date.getFullYear(), date.getMonth(), date.getDate(), 15, 30),
+          time: new Date(
+            date.getFullYear(),
+            date.getMonth(),
+            date.getDate(),
+            15,
+            30
+          ),
           currency: "GBP",
           impact: "high" as const,
           event: "النمو الربعي للناتج المحلي الإجمالي البريطاني",
@@ -294,7 +392,13 @@ export class FinancialApiService {
         },
         {
           id: "mock-4",
-          time: new Date(date.getFullYear(), date.getMonth(), date.getDate(), 16, 0),
+          time: new Date(
+            date.getFullYear(),
+            date.getMonth(),
+            date.getDate(),
+            16,
+            0
+          ),
           currency: "JPY",
           impact: "low" as const,
           event: "مؤتمر صحفي لبنك اليابان",
@@ -303,7 +407,13 @@ export class FinancialApiService {
         },
         {
           id: "mock-5",
-          time: new Date(date.getFullYear(), date.getMonth(), date.getDate(), 10, 0),
+          time: new Date(
+            date.getFullYear(),
+            date.getMonth(),
+            date.getDate(),
+            10,
+            0
+          ),
           currency: "USD",
           impact: "medium" as const,
           event: "بيانات التوظيف غير الزراعي",
@@ -313,17 +423,24 @@ export class FinancialApiService {
         },
         {
           id: "mock-6",
-          time: new Date(date.getFullYear(), date.getMonth(), date.getDate(), 12, 30),
+          time: new Date(
+            date.getFullYear(),
+            date.getMonth(),
+            date.getDate(),
+            12,
+            30
+          ),
           currency: "CAD",
           impact: "low" as const,
           event: "بيان أسعار الفائدة لبنك كندا",
           forecast: "5.0%",
           previous: "5.0%",
         },
-      ]
+      ],
     };
 
-    const mockEvents = eventsData[language as keyof typeof eventsData] || eventsData.en;
+    const mockEvents =
+      eventsData[language as keyof typeof eventsData] || eventsData.en;
 
     return mockEvents.sort((a, b) => a.time.getTime() - b.time.getTime());
   }
@@ -332,9 +449,12 @@ export class FinancialApiService {
 // Default configuration - can be overridden via environment variables
 export const createDefaultFinancialApi = (): FinancialApiService => {
   const config: FinancialApiConfig = {
-    provider: (process.env.NEXT_PUBLIC_FINANCIAL_API_PROVIDER as any) || "finnhub",
+    provider:
+      (process.env.NEXT_PUBLIC_FINANCIAL_API_PROVIDER as any) || "finnhub",
     apiKey: process.env.NEXT_PUBLIC_FINANCIAL_API_KEY || "demo",
-    baseUrl: process.env.NEXT_PUBLIC_FINANCIAL_API_BASE_URL || "https://finnhub.io/api/v1",
+    baseUrl:
+      process.env.NEXT_PUBLIC_FINANCIAL_API_BASE_URL ||
+      "https://finnhub.io/api/v1",
   };
 
   return new FinancialApiService(config);

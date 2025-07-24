@@ -29,7 +29,7 @@ const translations = {
     "dashboard.aiInsights": "AI Insights",
     "dashboard.loading": "Loading economic events...",
     "dashboard.noEvents": "No events found for the selected date.",
-    
+
     // Table Headers
     "table.time": "Time",
     "table.currency": "Currency",
@@ -38,7 +38,7 @@ const translations = {
     "table.actual": "Actual",
     "table.forecast": "Forecast",
     "table.previous": "Previous",
-    
+
     // Impact Levels
     "impact.high": "High Impact",
     "impact.medium": "Medium Impact",
@@ -46,7 +46,7 @@ const translations = {
     "impact.highLabel": "High",
     "impact.mediumLabel": "Medium",
     "impact.lowLabel": "Low",
-    
+
     // AI Insights
     "ai.title": "AI Market Insights",
     "ai.subtitle": "Powered by Liirat Intelligence",
@@ -54,7 +54,8 @@ const translations = {
     "ai.assistant": "AI Assistant",
     "ai.placeholder": "Ask about markets, events, or strategies...",
     "ai.thinking": "AI is thinking...",
-    "ai.welcome": "Hello! I'm your AI trading assistant. Ask me about today's economic events, market analysis, or trading strategies.",
+    "ai.welcome":
+      "Hello! I'm your AI trading assistant. Ask me about today's economic events, market analysis, or trading strategies.",
 
     // Notifications & Alerts
     "notifications.title": "Notifications",
@@ -93,14 +94,15 @@ const translations = {
 
     // Dashboard
     "dashboard.title": "التقويم الاقتصادي",
-    "dashboard.subtitle": "الأحداث الاقتصادية والأخبار المؤثرة على الأسواق في الوقت الفعلي",
+    "dashboard.subtitle":
+      "الأحداث الاقتصادية والأخبار المؤثرة على الأسواق في الوقت الفعلي",
     "dashboard.todaysEvents": "أحداث اليوم",
     "dashboard.searchPlaceholder": "البحث في الأحداث...",
     "dashboard.refresh": "تحديث",
     "dashboard.aiInsights": "رؤى الذكاء الاصطناعي",
     "dashboard.loading": "جاري تحميل الأحداث الاقتصادية...",
     "dashboard.noEvents": "لم يتم العثور على أحداث للتاريخ المحدد.",
-    
+
     // Table Headers
     "table.time": "الوقت",
     "table.currency": "العملة",
@@ -109,7 +111,7 @@ const translations = {
     "table.actual": "الفعلي",
     "table.forecast": "المتوقع",
     "table.previous": "السابق",
-    
+
     // Impact Levels
     "impact.high": "تأثير عالي",
     "impact.medium": "تأثير متوسط",
@@ -117,7 +119,7 @@ const translations = {
     "impact.highLabel": "عالي",
     "impact.mediumLabel": "متوسط",
     "impact.lowLabel": "منخفض",
-    
+
     // AI Insights
     "ai.title": "رؤى الذكاء الاصطناعي للأسواق",
     "ai.subtitle": "مدعوم بذكاء ليرات",
@@ -125,7 +127,8 @@ const translations = {
     "ai.assistant": "مساعد الذكاء الاصطناعي",
     "ai.placeholder": "اسأل عن الأسواق والأحداث والاستراتيجيات...",
     "ai.thinking": "الذكاء الاصطناعي يفكر...",
-    "ai.welcome": "مرحباً! أنا مساعدك التجاري بالذكاء الاصطناعي. اسألني عن الأحداث الاقتصادية اليوم، تحليل السوق�� أو استراتيجيات التداول.",
+    "ai.welcome":
+      "مرحباً! أنا مساعدك التجاري بالذكاء الاصطناعي. اسألني عن الأحداث الاقتصادية اليوم، تحليل السوق�� أو استراتيجيات التداول.",
 
     // Notifications & Alerts
     "notifications.title": "الإشعارات",
@@ -157,7 +160,9 @@ const translations = {
   },
 };
 
-const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
+const LanguageContext = createContext<LanguageContextType | undefined>(
+  undefined
+);
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const [language, setLanguageState] = useState<Language>("en");
@@ -165,7 +170,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
 
   const setLanguage = (newLanguage: Language) => {
     setLanguageState(newLanguage);
-    if (typeof window !== 'undefined') {
+    if (typeof window !== "undefined") {
       localStorage.setItem("liirat-language", newLanguage);
       document.documentElement.dir = newLanguage === "ar" ? "rtl" : "ltr";
       document.documentElement.lang = newLanguage;
@@ -173,12 +178,16 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   };
 
   const t = (key: string): string => {
-    return translations[language][key as keyof typeof translations[typeof language]] || key;
+    return (
+      translations[language][
+        key as keyof (typeof translations)[typeof language]
+      ] || key
+    );
   };
 
   useEffect(() => {
     // Only run on client side
-    if (typeof window !== 'undefined') {
+    if (typeof window !== "undefined") {
       const savedLanguage = localStorage.getItem("liirat-language") as Language;
       if (savedLanguage && (savedLanguage === "en" || savedLanguage === "ar")) {
         setLanguage(savedLanguage);

@@ -7,12 +7,14 @@ A real-time economic news and events dashboard built for traders and financial p
 ## ✨ Features
 
 ### 🎨 Liirat Branding
+
 - **Dark Theme**: Custom Liirat green color palette on black background
 - **Professional Design**: Clean, modern financial interface
 - **Responsive Layout**: Optimized for desktop and mobile devices
 - **Brand Identity**: Liirat logo, colors, and typography throughout
 
 ### 📊 Economic Events Dashboard
+
 - **Real-time Data**: Live economic events from multiple API providers
 - **Comprehensive Table**: Time, Currency, Impact, Event, Actual, Forecast, Previous columns
 - **Impact Indicators**: Color-coded dots (red/yellow/green) for event importance
@@ -22,6 +24,7 @@ A real-time economic news and events dashboard built for traders and financial p
 - **Search Functionality**: Filter events by name or currency
 
 ### 🤖 AI Market Insights
+
 - **Intelligent Analysis**: AI-powered market intelligence sidebar
 - **Real-time Chat**: Interactive AI assistant for trading questions
 - **Market Summaries**: Automated daily market overview and alerts
@@ -29,18 +32,21 @@ A real-time economic news and events dashboard built for traders and financial p
 - **Strategy Suggestions**: Trading recommendations and risk management tips
 
 ### 🌍 Multi-language Support
+
 - **English/Arabic**: Full bilingual support with language toggle
 - **RTL Support**: Right-to-left layout for Arabic interface
 - **Auto-detection**: Browser language detection with manual override
 - **Complete Translation**: All UI elements, notifications, and AI responses
 
 ### 🔌 API Integration
+
 - **Multiple Providers**: Support for Finnhub, Trading Economics, and Marketaux
 - **Fallback System**: Graceful degradation to mock data if APIs fail
 - **Rate Limit Handling**: Smart caching and request management
 - **Error Recovery**: Robust error handling and user feedback
 
 ### ⚡ Performance & UX
+
 - **Fast Loading**: Optimized API calls and data caching
 - **Real-time Updates**: WebSocket support for live data streams
 - **Mobile Responsive**: Touch-friendly interface for all devices
@@ -50,29 +56,34 @@ A real-time economic news and events dashboard built for traders and financial p
 ## 🚀 Quick Start
 
 ### Prerequisites
-- Node.js 18+ 
+
+- Node.js 18+
 - npm or yarn
 - API key from one of the supported providers
 
 ### Installation
 
 1. **Clone the repository**
+
    ```bash
    git clone <repository-url>
    cd liirat-economic-dashboard
    ```
 
 2. **Install dependencies**
+
    ```bash
    npm install
    ```
 
 3. **Configure environment**
+
    ```bash
    cp .env.example .env.local
    ```
-   
+
    Edit `.env.local` with your API credentials:
+
    ```env
    NEXT_PUBLIC_FINANCIAL_API_PROVIDER=finnhub
    NEXT_PUBLIC_FINANCIAL_API_KEY=your_api_key_here
@@ -80,6 +91,7 @@ A real-time economic news and events dashboard built for traders and financial p
    ```
 
 4. **Start development server**
+
    ```bash
    npm run dev
    ```
@@ -90,16 +102,19 @@ A real-time economic news and events dashboard built for traders and financial p
 ## 📡 API Providers
 
 ### Finnhub (Recommended)
+
 - **Free Tier**: 60 calls/minute
 - **Setup**: Register at [finnhub.io](https://finnhub.io/register)
 - **Features**: Economic calendar, real-time data
 
 ### Trading Economics
+
 - **Features**: Comprehensive economic indicators
 - **Setup**: Subscribe at [tradingeconomics.com](https://tradingeconomics.com/api)
 - **Note**: Paid service required
 
 ### Marketaux
+
 - **Features**: Financial news and market data
 - **Setup**: Register at [marketaux.com](https://www.marketaux.com/account/register)
 - **Free Tier**: Available with limits
@@ -120,18 +135,21 @@ See [API Setup Guide](docs/API_SETUP.md) for detailed configuration instructions
 ## 🎯 Key Components
 
 ### Economic Events Table
+
 ```typescript
 // Main dashboard component with real-time events
 <EconomicEventsTable />
 ```
 
 ### AI Market Insights
+
 ```typescript
 // AI-powered sidebar with chat interface
 <MarketInsights isOpen={true} events={events} />
 ```
 
 ### Language Provider
+
 ```typescript
 // Multi-language context with RTL support
 <LanguageProvider>
@@ -142,6 +160,7 @@ See [API Setup Guide](docs/API_SETUP.md) for detailed configuration instructions
 ## 🔧 Configuration
 
 ### Environment Variables
+
 ```env
 # Required: Financial API
 NEXT_PUBLIC_FINANCIAL_API_PROVIDER=finnhub
@@ -156,6 +175,7 @@ NEXT_PUBLIC_WEBSOCKET_URL=wss://ws.finnhub.io
 ```
 
 ### Customization
+
 - **Colors**: Modify `src/app/globals.css` for theme colors
 - **Branding**: Update logo and text in `src/app/layout.tsx`
 - **Languages**: Add translations in `src/components/language/language-provider.tsx`
@@ -163,6 +183,7 @@ NEXT_PUBLIC_WEBSOCKET_URL=wss://ws.finnhub.io
 ## 📱 Mobile Responsive
 
 The dashboard is fully responsive with:
+
 - **Touch-friendly** controls and buttons
 - **Collapsible** navigation for mobile screens
 - **Optimized** table layout with horizontal scrolling
@@ -179,12 +200,14 @@ The dashboard is fully responsive with:
 ## 🚀 Deployment
 
 ### Vercel (Recommended)
+
 ```bash
 npm run build
 vercel deploy
 ```
 
 ### Other Platforms
+
 ```bash
 npm run build
 npm start

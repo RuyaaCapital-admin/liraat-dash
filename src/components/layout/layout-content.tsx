@@ -24,7 +24,9 @@ export function LayoutContent({ children }: LayoutContentProps) {
               className="w-8 h-8 object-contain"
             />
             <h1 className="text-xl font-bold text-primary">{t("nav.title")}</h1>
-            <span className="text-muted-foreground text-sm">{t("nav.subtitle")}</span>
+            <span className="text-muted-foreground text-sm">
+              {t("nav.subtitle")}
+            </span>
           </div>
           <div className="flex items-center gap-3">
             <NotificationButton />
@@ -47,9 +49,7 @@ export function LayoutContent({ children }: LayoutContentProps) {
               &copy; {new Date().getFullYear()} Liirat Ltd. {t("nav.footer")}
             </p>
           </div>
-          <p className="text-xs text-muted-foreground">
-            {t("nav.poweredBy")}
-          </p>
+          <p className="text-xs text-muted-foreground">{t("nav.poweredBy")}</p>
         </div>
       </footer>
     </>

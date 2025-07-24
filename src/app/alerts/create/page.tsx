@@ -57,15 +57,19 @@ export default function CreateAlertPage() {
   };
 
   const handleInputChange = (field: string, value: any) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
+    setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
   const getImpactColor = (impact: string) => {
     switch (impact) {
-      case "high": return "text-red-600 border-red-200 bg-red-50 dark:bg-red-950/30";
-      case "medium": return "text-yellow-600 border-yellow-200 bg-yellow-50 dark:bg-yellow-950/30";
-      case "low": return "text-green-600 border-green-200 bg-green-50 dark:bg-green-950/30";
-      default: return "text-gray-600 border-gray-200";
+      case "high":
+        return "text-red-600 border-red-200 bg-red-50 dark:bg-red-950/30";
+      case "medium":
+        return "text-yellow-600 border-yellow-200 bg-yellow-50 dark:bg-yellow-950/30";
+      case "low":
+        return "text-green-600 border-green-200 bg-green-50 dark:bg-green-950/30";
+      default:
+        return "text-gray-600 border-gray-200";
     }
   };
 
@@ -82,7 +86,9 @@ export default function CreateAlertPage() {
   const defaultDateTimeString = defaultDateTime.toISOString().slice(0, 16);
 
   return (
-    <div className={`container mx-auto px-4 py-6 max-w-2xl ${direction === "rtl" ? "rtl" : "ltr"}`}>
+    <div
+      className={`container mx-auto px-4 py-6 max-w-2xl ${direction === "rtl" ? "rtl" : "ltr"}`}
+    >
       <div className="space-y-6">
         {/* Header */}
         <div>
@@ -91,7 +97,8 @@ export default function CreateAlertPage() {
             {t("alerts.createNew")}
           </h1>
           <p className="text-muted-foreground mt-1">
-            Set up alerts for important economic events and get notified in real-time
+            Set up alerts for important economic events and get notified in
+            real-time
           </p>
         </div>
 
@@ -102,7 +109,8 @@ export default function CreateAlertPage() {
               <div className="flex items-center gap-2 text-yellow-700 dark:text-yellow-400">
                 <Bell className="w-4 h-4" />
                 <span className="text-sm">
-                  Browser notifications are disabled. Enable them to receive real-time alerts.
+                  Browser notifications are disabled. Enable them to receive
+                  real-time alerts.
                 </span>
               </div>
             </CardContent>
@@ -133,11 +141,15 @@ export default function CreateAlertPage() {
 
               {/* Description */}
               <div className="space-y-2">
-                <Label htmlFor="description">{t("alerts.form.description")} *</Label>
+                <Label htmlFor="description">
+                  {t("alerts.form.description")} *
+                </Label>
                 <Input
                   id="description"
                   value={formData.description}
-                  onChange={(e) => handleInputChange("description", e.target.value)}
+                  onChange={(e) =>
+                    handleInputChange("description", e.target.value)
+                  }
                   placeholder="Brief description of the event"
                   required
                 />
@@ -162,11 +174,15 @@ export default function CreateAlertPage() {
                   <select
                     id="currency"
                     value={formData.currency}
-                    onChange={(e) => handleInputChange("currency", e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("currency", e.target.value)
+                    }
                     className="w-full px-3 py-2 text-sm border border-input bg-background rounded-md focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
                   >
-                    {currencies.map(currency => (
-                      <option key={currency} value={currency}>{currency}</option>
+                    {currencies.map((currency) => (
+                      <option key={currency} value={currency}>
+                        {currency}
+                      </option>
                     ))}
                   </select>
                 </div>
@@ -178,10 +194,14 @@ export default function CreateAlertPage() {
                       <Button
                         key={value}
                         type="button"
-                        variant={formData.impact === value ? "default" : "outline"}
+                        variant={
+                          formData.impact === value ? "default" : "outline"
+                        }
                         size="sm"
                         onClick={() => handleInputChange("impact", value)}
-                        className={formData.impact === value ? getImpactColor(value) : ""}
+                        className={
+                          formData.impact === value ? getImpactColor(value) : ""
+                        }
                       >
                         {label}
                       </Button>
@@ -192,12 +212,16 @@ export default function CreateAlertPage() {
 
               {/* Trigger Time */}
               <div className="space-y-2">
-                <Label htmlFor="triggerTime">{t("alerts.form.triggerTime")} *</Label>
+                <Label htmlFor="triggerTime">
+                  {t("alerts.form.triggerTime")} *
+                </Label>
                 <Input
                   id="triggerTime"
                   type="datetime-local"
                   value={formData.triggerTime || defaultDateTimeString}
-                  onChange={(e) => handleInputChange("triggerTime", e.target.value)}
+                  onChange={(e) =>
+                    handleInputChange("triggerTime", e.target.value)
+                  }
                   min={new Date().toISOString().slice(0, 16)}
                   required
                 />
@@ -209,7 +233,9 @@ export default function CreateAlertPage() {
                   id="isActive"
                   type="checkbox"
                   checked={formData.isActive}
-                  onChange={(e) => handleInputChange("isActive", e.target.checked)}
+                  onChange={(e) =>
+                    handleInputChange("isActive", e.target.checked)
+                  }
                   className="w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary"
                 />
                 <Label htmlFor="isActive" className="text-sm">
@@ -221,7 +247,9 @@ export default function CreateAlertPage() {
               <div className="flex gap-3 pt-4">
                 <Button
                   type="submit"
-                  disabled={isSubmitting || !formData.title || !formData.description}
+                  disabled={
+                    isSubmitting || !formData.title || !formData.description
+                  }
                   className="flex-1"
                 >
                   {isSubmitting ? "Creating..." : t("alerts.form.save")}

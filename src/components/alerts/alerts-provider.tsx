@@ -7,7 +7,12 @@ interface AlertsContextType {
   alerts: Alert[];
   notifications: AlertNotification[];
   unreadCount: number;
-  createAlert: (alertData: Omit<Alert, 'id' | 'createdAt' | 'isTriggered' | 'triggeredAt' | 'notificationSent'>) => Alert;
+  createAlert: (
+    alertData: Omit<
+      Alert,
+      "id" | "createdAt" | "isTriggered" | "triggeredAt" | "notificationSent"
+    >
+  ) => Alert;
   updateAlert: (id: string, updates: Partial<Alert>) => Alert | null;
   deleteAlert: (id: string) => boolean;
   markNotificationAsRead: (id: string) => void;
@@ -42,9 +47,12 @@ export function AlertsProvider({ children }: { children: React.ReactNode }) {
     createAlert: alertsManager.createAlert.bind(alertsManager),
     updateAlert: alertsManager.updateAlert.bind(alertsManager),
     deleteAlert: alertsManager.deleteAlert.bind(alertsManager),
-    markNotificationAsRead: alertsManager.markNotificationAsRead.bind(alertsManager),
-    markAllNotificationsAsRead: alertsManager.markAllNotificationsAsRead.bind(alertsManager),
-    requestNotificationPermission: alertsManager.requestNotificationPermission.bind(alertsManager),
+    markNotificationAsRead:
+      alertsManager.markNotificationAsRead.bind(alertsManager),
+    markAllNotificationsAsRead:
+      alertsManager.markAllNotificationsAsRead.bind(alertsManager),
+    requestNotificationPermission:
+      alertsManager.requestNotificationPermission.bind(alertsManager),
   };
 
   return (

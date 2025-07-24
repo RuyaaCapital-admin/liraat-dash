@@ -18,7 +18,12 @@ import Link from "next/link";
 
 export function NotificationButton() {
   const { t } = useLanguage();
-  const { notifications, unreadCount, markNotificationAsRead, markAllNotificationsAsRead } = useAlerts();
+  const {
+    notifications,
+    unreadCount,
+    markNotificationAsRead,
+    markAllNotificationsAsRead,
+  } = useAlerts();
 
   const recentNotifications = notifications.slice(0, 5);
 
@@ -32,11 +37,11 @@ export function NotificationButton() {
             <Bell className="w-4 h-4" />
           )}
           {unreadCount > 0 && (
-            <Badge 
-              variant="destructive" 
+            <Badge
+              variant="destructive"
               className="absolute -top-2 -right-2 w-5 h-5 flex items-center justify-center text-xs p-0"
             >
-              {unreadCount > 9 ? '9+' : unreadCount}
+              {unreadCount > 9 ? "9+" : unreadCount}
             </Badge>
           )}
         </Button>
@@ -57,7 +62,7 @@ export function NotificationButton() {
           )}
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
-        
+
         {recentNotifications.length === 0 ? (
           <DropdownMenuItem disabled>
             <div className="text-center w-full py-4 text-muted-foreground">
@@ -80,7 +85,9 @@ export function NotificationButton() {
                     {notification.message}
                   </p>
                   <p className="text-xs text-muted-foreground mt-1">
-                    {formatDistanceToNow(notification.timestamp, { addSuffix: true })}
+                    {formatDistanceToNow(notification.timestamp, {
+                      addSuffix: true,
+                    })}
                   </p>
                 </div>
                 {!notification.isRead && (
@@ -90,7 +97,7 @@ export function NotificationButton() {
             </DropdownMenuItem>
           ))
         )}
-        
+
         <DropdownMenuSeparator />
         <DropdownMenuItem asChild>
           <Link href="/alerts" className="flex items-center w-full">

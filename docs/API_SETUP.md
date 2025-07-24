@@ -7,6 +7,7 @@ The Liirat Economic Dashboard supports multiple financial data providers for rea
 ## Supported Providers
 
 ### 1. Finnhub (Recommended)
+
 - **Website**: https://finnhub.io
 - **Free Tier**: 60 API calls/minute
 - **Features**: Economic calendar, real-time market data
@@ -18,6 +19,7 @@ The Liirat Economic Dashboard supports multiple financial data providers for rea
   5. Set `NEXT_PUBLIC_FINANCIAL_API_BASE_URL=https://finnhub.io/api/v1`
 
 ### 2. Trading Economics
+
 - **Website**: https://tradingeconomics.com
 - **Features**: Comprehensive economic calendar, indicators
 - **Setup**:
@@ -28,6 +30,7 @@ The Liirat Economic Dashboard supports multiple financial data providers for rea
   5. Set `NEXT_PUBLIC_FINANCIAL_API_BASE_URL=https://api.tradingeconomics.com`
 
 ### 3. Marketaux
+
 - **Website**: https://www.marketaux.com
 - **Features**: Financial news, market data
 - **Setup**:
@@ -40,11 +43,13 @@ The Liirat Economic Dashboard supports multiple financial data providers for rea
 ## Environment Configuration
 
 1. Copy `.env.example` to `.env.local`:
+
    ```bash
    cp .env.example .env.local
    ```
 
 2. Update the variables with your API credentials:
+
    ```env
    NEXT_PUBLIC_FINANCIAL_API_PROVIDER=finnhub
    NEXT_PUBLIC_FINANCIAL_API_KEY=your_actual_api_key
@@ -59,14 +64,17 @@ The Liirat Economic Dashboard supports multiple financial data providers for rea
 ## API Rate Limits
 
 ### Finnhub (Free)
+
 - 60 requests/minute
 - Auto-refresh every 5 minutes fits within limits
 
 ### Trading Economics
+
 - Varies by plan
 - Contact provider for specific limits
 
 ### Marketaux
+
 - Varies by plan
 - Check dashboard for current usage
 
@@ -111,11 +119,13 @@ Get your key from: https://platform.openai.com/api-keys
 ### Common Issues
 
 1. **"Invalid API Key"**
+
    - Verify key is correct
    - Check if key has required permissions
    - Ensure provider is properly set
 
 2. **"Rate Limit Exceeded"**
+
    - Reduce auto-refresh frequency
    - Upgrade to higher tier plan
    - Implement caching strategy
@@ -138,11 +148,13 @@ This will log API requests and responses to the browser console.
 ## Support
 
 For API-related issues:
+
 - Check provider documentation
 - Contact provider support
 - Review dashboard error logs
 
 For dashboard issues:
+
 - Check browser console for errors
 - Verify environment configuration
 - Test with mock data first
