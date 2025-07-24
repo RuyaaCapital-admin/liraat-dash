@@ -104,6 +104,21 @@ export function EconomicEventsTable() {
     loadEvents(newDate);
   };
 
+  const createQuickAlert = (event: EconomicEvent) => {
+    const alertTime = new Date(event.time);
+    alertTime.setMinutes(alertTime.getMinutes() - 15); // Alert 15 minutes before event
+
+    createAlert({
+      title: event.event,
+      description: `${event.currency} - ${event.event}`,
+      notes: `Alert for ${event.currency} event with ${event.impact} impact`,
+      currency: event.currency,
+      impact: event.impact,
+      triggerTime: alertTime,
+      isActive: true,
+    });
+  };
+
   useEffect(() => {
     loadEvents(selectedDate);
 
