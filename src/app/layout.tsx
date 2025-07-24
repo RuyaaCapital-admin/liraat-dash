@@ -1,3 +1,4 @@
+import { AlertsProvider } from "@/components/alerts/alerts-provider";
 import { LanguageProvider } from "@/components/language/language-provider";
 import { LayoutContent } from "@/components/layout/layout-content";
 import { ThemeProvider } from "@/components/theme/theme-provider";
