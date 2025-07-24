@@ -1,12 +1,12 @@
-import { GitHubStarButton } from "@/components/github-star-button";
+import { AlertsProvider } from "@/components/alerts/alerts-provider";
+import { LanguageProvider } from "@/components/language/language-provider";
+import { LayoutContent } from "@/components/layout/layout-content";
 import { ThemeProvider } from "@/components/theme/theme-provider";
-import { ThemeSelect } from "@/components/theme/theme-select";
 import { cn } from "@/lib/utils";
 import { TooltipProvider } from "@radix-ui/react-tooltip";
 import { Analytics } from "@vercel/analytics/react";
 import type { Metadata } from "next";
 import { Inter as FontSans } from "next/font/google";
-import Link from "next/link";
 import "./globals.css";
 
 const fontSans = FontSans({
@@ -15,8 +15,8 @@ const fontSans = FontSans({
 });
 
 export const metadata: Metadata = {
-  title: "shadcn/ui - Big Calendar Styles",
-  description: "Big Calendar Styles",
+  title: "Liirat News",
+  description: "Real-time Financial News and Economic Events",
 };
 
 export default function RootLayout({
@@ -34,43 +34,18 @@ export default function RootLayout({
       >
         <Analytics />
         <TooltipProvider>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <nav className="w-full py-4 border-b mb-4">
-              <div className="container flex justify-between items-center">
-                <h1 className="text-lg">Shadcn/ui - Big Calendar Styles</h1>
-                <div className="flex items-center gap-2">
-                  <GitHubStarButton />
-                  <ThemeSelect />
-                </div>
-              </div>
-            </nav>
-            {children}
-            <footer className="w-full py-4 border-t mt-auto">
-              <div className="container flex justify-between">
-                <p>
-                  &copy; {new Date().getFullYear()}{" "}
-                  <Link href="https://jonas-list.vercel.app/" className="hover:underline">Jonas List</Link>
-                </p>
-                <p>
-                  <Link
-                    href="https://jquense.github.io/react-big-calendar/examples/index.html?path=/story/about-big-calendar--page"
-                    className="mr-2 hover:underline"
-                  >
-                    Original Big Calendar
-                  </Link>
-                  |
-                  <Link href="https://ui.shadcn.com/" className="ml-2 hover:underline">
-                    Shadcn/ui
-                  </Link>
-                </p>
-              </div>
-            </footer>
-          </ThemeProvider>
+          <LanguageProvider>
+            <AlertsProvider>
+              <ThemeProvider
+                attribute="class"
+                defaultTheme="dark"
+                enableSystem
+                disableTransitionOnChange
+              >
+                <LayoutContent>{children}</LayoutContent>
+              </ThemeProvider>
+            </AlertsProvider>
+          </LanguageProvider>
         </TooltipProvider>
       </body>
     </html>
