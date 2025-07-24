@@ -156,6 +156,16 @@ export function EconomicEventsTable() {
             <RefreshCw className={`w-4 h-4 ${isRefreshing ? "animate-spin" : ""}`} />
             Refresh
           </Button>
+
+          <Button
+            onClick={() => setShowAiInsights(true)}
+            variant="default"
+            size="sm"
+            className="gap-2 bg-primary hover:bg-primary/90"
+          >
+            <Bot className="w-4 h-4" />
+            AI Insights
+          </Button>
         </div>
       </div>
 
